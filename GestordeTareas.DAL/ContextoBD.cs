@@ -21,17 +21,12 @@ namespace GestordeTareas.DAL
 
 
 
+        public DbSet<IniciarSesionEN> IniciarSesion { get; set; }
+        public DbSet<EstadoTareaEN> EstadoTarea { get; set; }
         public DbSet<Tarea> Tarea { get; set; }
         public DbSet<ImagenTarea> ImagenTarea { get; set; }
         public DbSet<AsignacionTareas> AsignacionTareas { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"Data Source=HERNANDEZ\SQLEXPRESS;
-                                           Initial Catalog =  GestorTareasBD;
-                                           Integrated Security = true;
-                                           Encrypt = false;
-                                           TrustServerCertificate = true;");
-        }
+        
     }
 }
