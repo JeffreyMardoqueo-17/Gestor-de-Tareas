@@ -89,7 +89,7 @@ namespace GestordeTareas.UI.Controllers
         {
             try
             {
-                await _cargoBL.DeliteAsync(cargo);
+                await _cargoBL.DeleteAsync(cargo);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
