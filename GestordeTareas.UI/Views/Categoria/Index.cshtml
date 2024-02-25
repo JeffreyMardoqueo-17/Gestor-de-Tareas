@@ -63,7 +63,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Nombre)
             </th>
-=======
 <a id="btnCrearCategoria" class="btn btn-success">
     <i class="fas fa-plus"></i> Crear nueva categoría
 </a>
@@ -72,12 +71,10 @@
         <tr>
             <th>@Html.DisplayNameFor(model => model.Id)</th>
             <th>@Html.DisplayNameFor(model => model.Nombre)</th>
->>>>>>> 7a3be38e1454de6948774bf75357d8c9ce8f1342
             <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
-<<<<<<< HEAD
 @foreach (var item in Model) {
         <tr data-page="@numPage">
             <td>
@@ -96,12 +93,11 @@
                 numRegistros = 0;
             }
 }
-        @{
+        {
             if (numRegistros == 0)
             {
                 numPage--;
             }
-=======
         @foreach (var item in Model)
         {
             <tr>
@@ -119,12 +115,10 @@
                     </button>
                 </td>
             </tr>
->>>>>>> 7a3be38e1454de6948774bf75357d8c9ce8f1342
         }
     </tbody>
 </table>
 
-<<<<<<< HEAD
 @if (numPage > 1)
 {
     <div class="row" style="overflow:auto">
@@ -140,7 +134,6 @@
         </div>
     </div>
 }
-=======
 @section Scripts {
     <script>
         function abrirModalEditar(id) {
@@ -156,4 +149,3 @@
         }
     </script>
 }
->>>>>>> 7a3be38e1454de6948774bf75357d8c9ce8f1342
