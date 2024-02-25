@@ -22,10 +22,12 @@ namespace GestordeTareas.BL
         {
             return await CargoDAL.DeleteAsync(cargo);
         }
+
         public async Task<Cargo> GetById(Cargo cargo)
         {
-            return await CargoDAL.GetByIdAsync(cargo);
+            return await CargoDAL.GetByIdAsync(cargo.Id);
         }
+
         public async Task<List<Cargo>> GetAllAsync()
         {
             return await CargoDAL.GetAllAsync();

@@ -12,24 +12,70 @@ namespace GestordeTareas.BL
     {
         public async Task<int> CreateAsync(Categoria categoria)
         {
-            return await CategoriaDAL.CreateAsync(categoria);
+            try
+            {
+                return await CategoriaDAL.CreateAsync(categoria);
+            }
+            catch (Exception ex)
+            {
+                // Manejar la excepción según las necesidades de tu aplicación.
+                // Aquí puedes registrar el error, lanzar una excepción diferente, etc.
+                Console.WriteLine($"Error en CreateAsync: {ex.Message}");
+                return 0; // O algún valor que indique un error.
+            }
         }
+
         public async Task<int> UpdateAsync(Categoria categoria)
         {
-            return await CategoriaDAL.UpdateAsync(categoria);
+            try
+            {
+                return await CategoriaDAL.UpdateAsync(categoria);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en UpdateAsync: {ex.Message}");
+                return 0;
+            }
         }
+
         public async Task<int> DeleteAsync(Categoria categoria)
         {
-            return await CategoriaDAL.DeleteAsync(categoria);
+            try
+            {
+                return await CategoriaDAL.DeleteAsync(categoria);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en DeleteAsync: {ex.Message}");
+                return 0;
+            }
         }
 
         public async Task<Categoria> GetById(Categoria categoria)
         {
-            return await CategoriaDAL.GetByIdAsync(categoria);
+            try
+            {
+                return await CategoriaDAL.GetByIdAsync(categoria.Id);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en GetById: {ex.Message}");
+                return null; // O algún valor que indique un error.
+            }
         }
+
         public async Task<List<Categoria>> GetAllAsync()
         {
-            return await CategoriaDAL.GetAllAsync();
+            try
+            {
+                return await CategoriaDAL.GetAllAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en GetAllAsync: {ex.Message}");
+                return new List<Categoria>(); // Otra opción puede ser lanzar la excepción.
+            }
         }
+
     }
 }

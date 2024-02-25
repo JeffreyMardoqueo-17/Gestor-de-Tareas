@@ -14,64 +14,64 @@ namespace GestordeTareas.DAL
         public static async Task<int> CreateAsync(Cargo cargo)
         {
             int result = 0;
-            using (var dbContexto = new ContextoBD()) //el comando using hace un proceso de ejecucion
+            using (var dbContexto = new ContextoBD())
             {
-                dbContexto.Cargo.Add(cargo); //agrego un nuevo categorua
-                result = await dbContexto.SaveChangesAsync();//se guarda a la base de datos
+                dbContexto.Cargo.Add(cargo);
+                result = await dbContexto.SaveChangesAsync();
             }
             return result;
         }
-        //--------------------------------METODO MODIFICAR cargo.--------------------------
+
+        //--------------------------------METODO MODIFICAR CARGO.--------------------------
         public static async Task<int> UpdateAsync(Cargo cargo)
         {
             int result = 0;
-            using (var bdContexto = new ContextoBD())//hago una instancia de la base de datos
+            using (var bdContexto = new ContextoBD())
             {
-                //expresion landam
-                var cargoBD = await bdContexto.Categoria.FirstOrDefaultAsync(c => c.Id == cargo.Id); //lo busco 
-                if (cargoBD != null)//verifico que no este nulo
+                var cargoBD = await bdContexto.Cargo.FirstOrDefaultAsync(c => c.Id == cargo.Id);
+                if (cargoBD != null)
                 {
-                    cargoBD.Nombre = cargo.Nombre; //actualizo las propiedades
-                    bdContexto.Update(cargoBD); //se guarda en memora
-                    result = await bdContexto.SaveChangesAsync(); //guardo en la base de datos con SaveChangesAsync
+                    cargoBD.Nombre = cargo.Nombre;
+                    bdContexto.Update(cargoBD);
+                    result = await bdContexto.SaveChangesAsync();
                 }
             }
             return result;
         }
+
         //--------------------------------METODO ELIMINAR CARGO.--------------------------
         public static async Task<int> DeleteAsync(Cargo cargo)
         {
             int result = 0;
-            using (var bdContexto = new ContextoBD()) //istancio la coneccion
+            using (var bdContexto = new ContextoBD())
             {
-                var cargoBD = await bdContexto.Cargo.FirstOrDefaultAsync(c => c.Id == cargo.Id); //busco el id
-                if (cargoBD != null)//verifico que no este nulo
+                var cargoBD = await bdContexto.Cargo.FirstOrDefaultAsync(c => c.Id == cargo.Id);
+                if (cargoBD != null)
                 {
-                    bdContexto.Cargo.Remove(cargoBD);//elimino anivel de memoria la categoria
-                    result = await bdContexto.SaveChangesAsync();//le digo a la BD que se elimine y se guarde
+                    bdContexto.Cargo.Remove(cargoBD);
+                    result = await bdContexto.SaveChangesAsync();
                 }
             }
             return result;
         }
-        //--------------------------------METODO obtenerporID CATEGORIA.--------------------------
-        public static async Task<Cargo> GetByIdAsync(Cargo cargo)
+
+        //--------------------------------METODO OBTENER POR ID CARGO.--------------------------
+        public static async Task<Cargo> GetByIdAsync(int cargoId)
         {
-            var cargoBD = new Cargo();
             using (var bdContexto = new ContextoBD())
             {
-                var cargob = await bdContexto.Cargo.FirstOrDefaultAsync(c => c.Id == cargo.Id); //busco el id
+                return await bdContexto.Cargo.FirstOrDefaultAsync(c => c.Id == cargoId);
             }
-            return cargoBD;
         }
-        //--------------------------------METODO obtener todas las CATEGORIAS.--------------------------
+
+        //--------------------------------METODO OBTENER TODOS LOS CARGOS.--------------------------
         public static async Task<List<Cargo>> GetAllAsync()
         {
-            var cargos = new List<Cargo>(); //una variable de lo que llevara una lista de Categorias
-            using (var bdContexto = new ContextoBD()) //creo el acceso a la BD
+            using (var bdContexto = new ContextoBD())
             {
-                cargos = await bdContexto.Cargo.ToListAsync(); //le digo que categories contenga la lista de categorias, osea lo de l BD
+                return await bdContexto.Cargo.ToListAsync();
             }
-            return cargos;
         }
     }
+
 }

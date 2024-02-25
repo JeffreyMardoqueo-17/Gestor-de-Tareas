@@ -14,65 +14,64 @@ namespace GestordeTareas.DAL
         public static async Task<int> CreateAsync(Categoria categoria)
         {
             int result = 0;
-            using (var dbContexto = new ContextoBD()) //el comando using hace un proceso de ejecucion
+            using (var dbContexto = new ContextoBD())
             {
-                dbContexto.Categoria.Add(categoria); //agrego un nuevo categorua
-                result = await dbContexto.SaveChangesAsync();//se guarda a la base de datos
+                dbContexto.Categoria.Add(categoria);
+                result = await dbContexto.SaveChangesAsync();
             }
             return result;
         }
+
         //--------------------------------METODO MODIFICAR CATEGORIA.--------------------------
         public static async Task<int> UpdateAsync(Categoria categoria)
         {
             int result = 0;
-            using (var bdContexto = new ContextoBD())//hago una instancia de la base de datos
+            using (var bdContexto = new ContextoBD())
             {
-                //expresion landam
-                var categoriaBD = await bdContexto.Categoria.FirstOrDefaultAsync(c => c.Id == categoria.Id); //lo busco 
-                if (categoriaBD != null)//verifico que no este nulo
+                var categoriaBD = await bdContexto.Categoria.FirstOrDefaultAsync(c => c.Id == categoria.Id);
+                if (categoriaBD != null)
                 {
-                    categoriaBD.Nombre = categoria.Nombre; //actualizo las propiedades
-                    bdContexto.Update(categoriaBD); //se guarda en memora
-                    result = await bdContexto.SaveChangesAsync(); //guardo en la base de datos con SaveChangesAsync
+                    categoriaBD.Nombre = categoria.Nombre;
+                    bdContexto.Update(categoriaBD);
+                    result = await bdContexto.SaveChangesAsync();
                 }
             }
             return result;
         }
-        //--------------------------------METODO Eliminar CATEGORIA.--------------------------
+
+        //--------------------------------METODO ELIMINAR CATEGORIA.--------------------------
         public static async Task<int> DeleteAsync(Categoria categoria)
         {
             int result = 0;
-            using (var bdContexto = new ContextoBD()) //istancio la coneccion
+            using (var bdContexto = new ContextoBD())
             {
-                var categoriaBD = await bdContexto.Categoria.FirstOrDefaultAsync(c => c.Id == categoria.Id); //busco el id
-                if (categoriaBD != null)//verifico que no este nulo
+                var categoriaBD = await bdContexto.Categoria.FirstOrDefaultAsync(c => c.Id == categoria.Id);
+                if (categoriaBD != null)
                 {
-                    bdContexto.Categoria.Remove(categoriaBD);//elimino anivel de memoria la categoria
-                    result = await bdContexto.SaveChangesAsync();//le digo a la BD que se elimine y se guarde
+                    bdContexto.Categoria.Remove(categoriaBD);
+                    result = await bdContexto.SaveChangesAsync();
                 }
             }
             return result;
         }
-        //--------------------------------METODO obtenerporID CATEGORIA.--------------------------
-        public static async Task<Categoria> GetByIdAsync(Categoria categoria)
+
+        //--------------------------------METODO OBTENER POR ID CATEGORIA.--------------------------
+        public static async Task<Categoria> GetByIdAsync(int categoriaId)
         {
-            var categoriaBD = new Categoria();
             using (var bdContexto = new ContextoBD())
             {
-                var categoryBD = await bdContexto.Categoria.FirstOrDefaultAsync(c => c.Id == categoria.Id); //busco el id
+                return await bdContexto.Categoria.FirstOrDefaultAsync(c => c.Id == categoriaId);
             }
-            return categoriaBD;
         }
 
-        //--------------------------------METODO obtener todas las CATEGORIAS.--------------------------
+        //--------------------------------METODO OBTENER TODAS LAS CATEGORIAS.--------------------------
         public static async Task<List<Categoria>> GetAllAsync()
         {
-            var categorias = new List<Categoria>(); //una variable de lo que llevara una lista de Categorias
-            using (var bdContexto = new ContextoBD()) //creo el acceso a la BD
+            using (var bdContexto = new ContextoBD())
             {
-                categorias = await bdContexto.Categoria.ToListAsync(); //le digo que categories contenga la lista de categorias, osea lo de l BD
+                return await bdContexto.Categoria.ToListAsync();
             }
-            return categorias;
         }
     }
+
 }
