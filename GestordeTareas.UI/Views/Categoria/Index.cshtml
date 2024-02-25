@@ -13,6 +13,7 @@
 <h1>Listado de Categorías</h1>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <div class="row">
     <div class="col-md-12">
         <form asp-action="Index">
@@ -58,6 +59,12 @@
 
 
 <table class="table table-responsive table-striped paginationjs">
+=======
+<p>
+    <a asp-action="Create" class="btn btn-primary">Crear nueva Categoria</a>
+</p>
+<table class="table">
+>>>>>>> 65127a850580f4cc7394afacc2933664e960b35a
     <thead>
         <tr>
             <th>
@@ -84,6 +91,14 @@
                 @Html.ActionLink("Modificar", "Edit", new { id = item.Id }, new { @class = "btn btn-outline-info" } ) |
                     @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-outline-secondary" }) |
                     @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-outline-danger" })
+=======
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Editar", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Detalles", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Eliminar", new { /* id=item.PrimaryKey */ })
+>>>>>>> 65127a850580f4cc7394afacc2933664e960b35a
             </td>
         </tr>
             numRegistros++;
