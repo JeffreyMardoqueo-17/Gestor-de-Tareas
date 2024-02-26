@@ -1,89 +1,112 @@
-﻿
-@{
-    ViewData["Title"] = "Home Page";
-}
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modal </title>
+    <title>Sidebar con Bootstrap</title>
     <!-- Incluye la hoja de estilos de Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Incluye los iconos de Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
-        /* Estilos personalizados para el modal lateral */
-        .modal-side {
-            position: fixed; /* Modal fijo en la pantalla */
-            top: 0; /* Alineado en la parte superior de la pantalla */
-            left: -733px; /* Inicialmente, fuera de la pantalla hacia la izquierda */
-            height: 70%; /* Ocupa el 100% de la altura de la pantalla */
-            width: 200px; /* Ancho fijo de 200 píxeles */
-            transition: right 0.3s ease; /* Transición suave en la propiedad 'right' */
+        /* Estilos personalizados para el sidebar */
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #838c95;
+            overflow-x: hidden;
+            transition: 0.2s;
+            padding-top: 60px;
         }
 
-        /* Estilos para el contenido del modal */
-        .modal-content {
-            height: 100%; /* Ocupa el 100% de la altura del contenedor modal */
-            overflow-y: auto; /* Habilita el desplazamiento vertical si el contenido es más grande que la altura del contenedor */
+
+            .sidebar a {
+                padding: 8px 8px 8px 32px;
+                text-decoration: none;
+                font-size: 18px;
+                color: #000;
+                display: block;
+                transition: 0.2s;
+            }
+
+                .sidebar a:hover {
+                    color: black;
+                }
+
+            .sidebar .close-btn {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                font-size: 30px;
+            }
+
+        /* Estilos para el contenido principal */
+        #main {
+            transition: margin-left 0.3s;
+            padding: 16px;
         }
+
+        .custom-btn {
+            background-color: #838c95;
+            color: #ffffff;
+            transition: 0.2s;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Agrega una sombra */
+            margin-right: 8px; /* Añade un espacio entre los botones */
+        }
+
+            .custom-btn:hover {
+                background-color: #5d6066;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Aumenta la sombra al hacer hover */
+            }
 
     </style>
 </head>
 <body>
-    <main class="bg-secondary text-white p-4 container-fluid d-flex justify-content-between align-items-center">
-        <!-- Botón con el icono de hamburguesa -->
-       
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#miModal">
-            <i class="fas fa-bars"></i>
-        </button>
 
-    </main>
-    <!-- Modal -->
-    <div class="modal fade" id="miModal" tabindex="-1" role="dialog" aria-labelledby="miModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-side" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="miModalLabel">Apartados</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <!-- Contenido del modal -->
-                <div class="modal-body ">
+    <!-- Botón de hamburguesa para abrir el sidebar -->
+    <button class="btn btn-light" onclick="openSidebar()">
+        <i class="fas fa-bars"></i>
+    </button>
 
-                    <div class="d-flex flex-wrap">
-                        <a asp-controller="Categoria" asp-action="Create" class="btn btn-info mr-2 mb-2">Crear Categoría</a>
-                        <a asp-controller="Categoria" asp-action="Edit" class="btn btn-success mr-2 mb-2">Editar Categoria</a>
-                        <a asp-controller="Cargo" asp-action="create" class="btn btn-warning mr-2 mb-2"> cargo</a>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
+    <!-- Sidebar -->
+    <div class="sidebar" id="mySidebar">
+        <a href="javascript:void(0)" class="close-btn" onclick="closeSidebar()">
+            <i class="fas fa-times"></i>
+        </a>
+        <a asp-controller="Categoria" asp-action="Create" class="btn custom-btn">Crear Categoría</a>
+        <a asp-controller="Categoria" asp-action="Edit" class="btn custom-btn">Editar Categoria</a>
+        <a asp-controller="Cargo" asp-action="create" class="btn custom-btn">Cargo</a>
+
+
     </div>
 
-    <!-- Incluye los scripts de Bootstrap y jQuery -->
+    <!-- Contenido principal -->
+    <div id="main">
+        <!-- Contenido principal de tu página -->
+        <h2>Contenido Principal</h2>
+
+    </div>
+
+    <!-- Scripts de Bootstrap y jQuery (asegúrate de incluir jQuery antes de Bootstrap) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        // Agregar un evento para mostrar el modal y aplicar la clase modal-open al body
-        $('#miModal').on('show.bs.modal', function () {
-            $('body').addClass('modal-open');
-            $('.modal-side').css('right', '0');
-        });
 
-        // Agregar un evento para ocultar el modal y quitar la clase modal-open al body
-        $('#miModal').on('hidden.bs.modal', function () {
-            $('body').removeClass('modal-open');
-            $('.modal-side').css('right', '-400px');
-        });
+    <!-- Script personalizado para abrir/cerrar el sidebar -->
+    <script>
+        function closeSidebar() {
+            document.getElementById('mySidebar').style.width = '0';
+            document.getElementById('main').style.marginLeft = '0';
+        }
+
+        function openSidebar() {
+            document.getElementById('mySidebar').style.width = '200px';
+            document.getElementById('main').style.marginLeft = '200px';
+        }
     </script>
 </body>
 </html>
-
-

@@ -6,18 +6,12 @@
 
 <h1>Prioridad</h1>
 
-<<<<<<< HEAD
 <p>
     <a asp-action="Create" class="btn btn-success">
         <i class="fas fa-plus"></i> Crear Nueva Prioridad
     </a>
 </p>
 
-=======
-<a asp-action="Create" class="btn btn-success">
-    <i class="fas fa-plus"></i> Crear nueva prioridad
-</a>
->>>>>>> 21a4b189f442be38aab57a5c7a304ebeaf46865f
 <table class="table table-hover">
     <thead>
         <tr>
@@ -45,22 +39,5 @@
                 </td>
             </tr>
         }
-
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-                <td>
-                    @Html.ActionLink("Editar", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Detalles", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Eliminar", "Delete", new { /* id=item.PrimaryKey */ })
-                </td>
-        </tr>
-}
-
     </tbody>
 </table>

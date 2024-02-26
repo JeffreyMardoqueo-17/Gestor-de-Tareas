@@ -27,6 +27,13 @@ namespace GestordeTareas.DAL
         public DbSet<ImagenTarea> ImagenTarea { get; set; }
         public DbSet<AsignacionTareas> AsignacionTareas { get; set; }
 
-        
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(@"Data Source=HERNANDEZ\SQLEXPRESS;
+                                           Initial Catalog = GestordeTareasBD;
+                                           Integrated Security = true;
+                                           Encrypt = false;
+                                           TrustServerCertificate = true;");
+        }
     }
 }

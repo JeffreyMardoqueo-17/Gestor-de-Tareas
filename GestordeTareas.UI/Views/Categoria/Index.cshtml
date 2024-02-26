@@ -12,8 +12,6 @@
 
 <h1>Listado de Categorías</h1>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 <div class="row">
     <div class="col-md-12">
         <form asp-action="Index">
@@ -23,7 +21,7 @@
                         <label class="control-label">Nombre</label>
                         <input type="text" class="form-control" name="Nombre" />
                     </div>
-                </div>                
+                </div>
 
                 <div class="col-md-2">
                     <div class="form-group">
@@ -43,8 +41,7 @@
                             }
                         </select>
                     </div>
-                </div>                  
-                
+                </div>
             </div>
             <div class="col-md-4 m-2">
                 <input type="submit" value="Buscar" class="btn btn-outline-info" /> &nbsp;&nbsp;
@@ -54,24 +51,36 @@
     </div>
 </div>
 
-
-
-
-
 <table class="table table-responsive table-striped paginationjs">
-<p>
-    <a asp-action="Create" class="btn btn-primary">Crear nueva Categoria</a>
-</p>
-<table class="table">
->>>>>>> 65127a850580f4cc7394afacc2933664e960b35a
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Nombre)
             </th>
-<a id="btnCrearCategoria" class="btn btn-success">
-    <i class="fas fa-plus"></i> Crear nueva categoría
-</a>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+            </tr>
+            numRegistros++;
+            if (numRegistros == numRegistroPorPage)
+            {
+                numPage++;
+                numRegistros = 0;
+            }
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Create" class="btn btn-primary">Crear nueva Categoria</a>
+</div>
+
 <table class="table table-hover">
     <thead>
         <tr>
@@ -81,30 +90,6 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr data-page="@numPage">
-            <td>
-                    @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.ActionLink("Modificar", "Edit", new { id = item.Id }, new { @class = "btn btn-outline-info" } ) |
-                    @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-outline-secondary" }) |
-                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-outline-danger" })
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Editar", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Detalles", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Eliminar", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-            numRegistros++;
-            if (numRegistros == numRegistroPorPage)
-            {
-                numPage++;
-                numRegistros = 0;
-            }
-}
         @foreach (var item in Model)
         {
             <tr>
@@ -141,6 +126,7 @@
         </div>
     </div>
 }
+
 @section Scripts {
     <script>
         function abrirModalEditar(id) {
