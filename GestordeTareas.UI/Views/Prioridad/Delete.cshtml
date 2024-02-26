@@ -25,6 +25,12 @@
         </dd>
     </dl>
 
+    
+    <form asp-action="Delete" method="post">
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Regresar a la vista</a>
+    </form>
+
     <form asp-action="Delete">
         <input type="hidden" asp-asp="Id" />
         <input type="submit" value="Eliminar" class="btn btn-danger" /> |
