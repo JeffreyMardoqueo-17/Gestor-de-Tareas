@@ -1,47 +1,47 @@
-﻿<!-- Vista Index.cshtml -->
-@model IEnumerable<GestordeTaras.EN.Categoria>
+﻿    @model IEnumerable<GestordeTaras.EN.Categoria>
 
-@{
-    ViewData["Title"] = "Index";
-}
+    @{
+        ViewData["Title"] = "Index";
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    }
 
-<h1>Index</h1>
+    <h1>Categoria</h1>
 
-<a id="btnCrearCategoria" class="btn btn-success">
-    <i class="fas fa-plus"></i> Crear nueva categoría
-</a>
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.Id)</th>
-            <th>@Html.DisplayNameFor(model => model.Nombre)</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+    <a id="btnCrearCategoria" class="btn btn-success">
+        <i class="fas fa-plus"></i> Crear nueva categoría
+    </a>
+    <table class="table table-hover">
+        <thead>
             <tr>
-                <td>@Html.DisplayFor(modelItem => item.Id)</td>
-                <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
-                <td>
-                    <button class="btn btn-primary btn-sm" onclick="abrirModalEditar(@item.Id)">
-                        <i class="fas fa-edit"></i> Editar
-                    </button>
-                    <button class="btn btn-info btn-sm" onclick="abrirModalDetalles(@item.Id)">
-                        <i class="fas fa-eye"></i> Detalles
-                    </button>
-                    <button class="btn btn-danger btn-sm" onclick="abrirModalEliminar(@item.Id)">
-                        <i class="fas fa-trash-alt"></i> Eliminar
-                    </button>
-                </td>
+                <th>@Html.DisplayNameFor(model => model.Id)</th>
+                <th>@Html.DisplayNameFor(model => model.Nombre)</th>
+                <th>Acciones</th>
             </tr>
-        }
-    </tbody>
-</table>
-
-<!-- Modales -->
-<!-- Modal Editar -->
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" onclick="abrirModalEditar(@item.Id)">
+                            <i class="fas fa-edit"></i> Editar
+                        </button>
+                        <button class="btn btn-info btn-sm" onclick="abrirModalDetalles(@item.Id)">
+                            <i class="fas fa-eye"></i> Detalles
+                        </button>
+                        <button class="btn btn-danger btn-sm" onclick="abrirModalEliminar(@item.Id)">
+                            <i class="fas fa-trash-alt"></i> Eliminar
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+<!-- Modal de Editar -->
 <div class="modal fade" id="modalEditarCategoria" tabindex="-1" role="dialog" aria-labelledby="modalEditarCategoriaLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -51,25 +51,16 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <form asp-action="Edit">
-                    <input type="hidden" asp-for="Id" />
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="form-group">
-                        <label asp-for="Nombre" class="control-label"></label>
-                        <input asp-for="Nombre" class="form-control" />
-                        <span asp-validation-for="Nombre" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" value="Guardar" class="btn btn-primary" />
-                    </div>
-                </form>
+            <div class="modal-body" id="modalEditarCategoriaBody">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Modal Detalles -->
+<!-- Modal de Detalles -->
 <div class="modal fade" id="modalDetallesCategoria" tabindex="-1" role="dialog" aria-labelledby="modalDetallesCategoriaLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -79,13 +70,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <dl class="row">
-                    <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Id)</dt>
-                    <dd class="col-sm-10">@Html.DisplayFor(model => model.Id)</dd>
-                    <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Nombre)</dt>
-                    <dd class="col-sm-10">@Html.DisplayFor(model => model.Nombre)</dd>
-                </dl>
+            <div class="modal-body" id="modalDetallesCategoriaBody">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -94,7 +79,7 @@
     </div>
 </div>
 
-<!-- Modal Eliminar -->
+<!-- Modal de Eliminar -->
 <div class="modal fade" id="modalEliminarCategoria" tabindex="-1" role="dialog" aria-labelledby="modalEliminarCategoriaLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -104,49 +89,59 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <h3>¿Está seguro de que desea eliminar esta categoría?</h3>
-                <dl class="row">
-                    <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Id)</dt>
-                    <dd class="col-sm-10">@Html.DisplayFor(model => model.Id)</dd>
-                    <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Nombre)</dt>
-                    <dd class="col-sm-10">@Html.DisplayFor(model => model.Nombre)</dd>
-                </dl>
+            <div class="modal-body" id="modalEliminarCategoriaBody">
+                <p>¿Estás seguro de que deseas eliminar esta categoría?</p>
             </div>
             <div class="modal-footer">
-                <form asp-action="Delete">
-                    <input type="hidden" asp-for="Id" />
-                    <input type="submit" value="Eliminar" class="btn btn-danger" />
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                </form>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger">Eliminar</button>
             </div>
         </div>
     </div>
 </div>
 
-
 @section Scripts {
     <script>
         function abrirModalEditar(id) {
-            // Aquí puedes agregar código para cargar los datos de la categoría en el formulario de edición dentro del modal
-            $('#modalEditarCategoria').modal('show');
-            history.pushState(null, null, '/Categoria/Edit/' + id); // Agrega la ruta al historial
+            $.ajax({
+                url: '/Categoria/Edit/' + id,
+                type: 'GET',
+                success: function (data) {
+                    $('#modalEditarCategoria').modal('show');
+                    $('#modalEditarCategoriaBody').html(data);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
         }
 
         function abrirModalDetalles(id) {
-            // Aquí puedes agregar código para cargar los detalles de la categoría en el modal de detalles
-            $('#modalDetallesCategoria').modal('show');
-            history.pushState(null, null, '/Categoria/Details/' + id); // Agrega la ruta al historial
+            $.ajax({
+                url: '/Categoria/Details/' + id,
+                type: 'GET',
+                success: function (data) {
+                    $('#modalDetallesCategoria').modal('show');
+                    $('#modalDetallesCategoriaBody').html(data);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
         }
 
         function abrirModalEliminar(id) {
-            // Aquí puedes agregar código para cargar los detalles de la categoría en el modal de eliminación
-            $('#modalEliminarCategoria').modal('show');
-            history.pushState(null, null, '/Categoria/Delete/' + id); // Agrega la ruta al historial
+            $.ajax({
+                url: '/Categoria/Delete/' + id,
+                type: 'GET',
+                success: function (data) {
+                    $('#modalEliminarCategoria').modal('show');
+                    $('#modalEliminarCategoriaBody').html(data);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
         }
-
-        $('#modalEditarCategoria, #modalDetallesCategoria, #modalEliminarCategoria').on('hidden.bs.modal', function () {
-            history.pushState(null, null, '/Categoria/Index'); // Vuelve a la vista Index en el historial
-        });
     </script>
 }
