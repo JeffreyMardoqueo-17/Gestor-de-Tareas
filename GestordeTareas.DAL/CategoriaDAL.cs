@@ -54,14 +54,15 @@ namespace GestordeTareas.DAL
             }
             return result;
         }
-
-        //--------------------------------METODO OBTENER POR ID CATEGORIA.--------------------------
-        public static async Task<Categoria> GetByIdAsync(int categoriaId)
+        //--------------------------------METODO obtenerporID CATEGORIA.--------------------------
+        public static async Task<Categoria> GetByIdAsync(Categoria categoria)
         {
+            var categoryBD = new Categoria();
             using (var bdContexto = new ContextoBD())
             {
-                return await bdContexto.Categoria.FirstOrDefaultAsync(c => c.Id == categoriaId);
+                categoryBD = await bdContexto.Categoria.FirstOrDefaultAsync(c => c.Id == categoria.Id); //busco el id
             }
+            return categoryBD;
         }
 
         //--------------------------------METODO OBTENER TODAS LAS CATEGORIAS.--------------------------
