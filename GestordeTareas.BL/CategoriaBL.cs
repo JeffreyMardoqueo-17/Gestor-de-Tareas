@@ -51,18 +51,36 @@ namespace GestordeTareas.BL
             }
         }
 
-        public async Task<Categoria> GetById(Categoria categoria)
+public async Task<Categoria> GetById(Categoria categoria)
+{
+    try
+    {
+        // Asegúrate de que el objeto 'categoria' no sea nulo antes de intentar acceder a su propiedad 'Id'
+        if (categoria == null)
         {
-            try
-            {
-                return await CategoriaDAL.GetByIdAsync(categoria.Id);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error en GetById: {ex.Message}");
-                return null; // O algún valor que indique un error.
-            }
+            throw new ArgumentNullException(nameof(categoria), "El objeto 'categoria' no puede ser nulo.");
         }
+
+        // Aquí puedes verificar si el Id es válido antes de realizar la consulta
+        if (categoria.Id <= 0)
+        {
+            throw new ArgumentException("El Id de la categoría no es válido.", nameof(categoria.Id));
+        }
+
+        // Llama al método GetByIdAsync de CategoriaDAL
+        return await CategoriaDAL.GetByIdAsync(categoria.Id);
+    }
+    catch (Exception ex)
+    {
+        // Loguea el error para su posterior análisis
+        Console.WriteLine($"Error en GetById: {ex.Message}");
+
+        // Puedes lanzar la excepción nuevamente o devolver un valor que indique un error
+        // throw; 
+        return null; // O algún valor que indique un error.
+    }
+}
+
 
         public async Task<List<Categoria>> GetAllAsync()
         {
