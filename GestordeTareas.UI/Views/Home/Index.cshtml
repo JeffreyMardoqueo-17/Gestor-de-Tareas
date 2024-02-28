@@ -7,8 +7,7 @@
     <!-- Incluye la hoja de estilos de Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Incluye los iconos de Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-xBQk/3IOn3EmPiMzS2SlKpEXODapOfjhHH7EAHDHRlrYFyH8TjgXZp6qUVLIjfGT4Z9SI+fyE4iTTfvK2lS9Fg==" crossorigin="anonymous" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         /* Estilos personalizados para el sidebar */
         .sidebar {
@@ -23,7 +22,6 @@
             transition: 0.2s;
             padding-top: 60px;
         }
-
 
             .sidebar a {
                 padding: 8px 8px 8px 32px;
@@ -56,15 +54,14 @@
             color: #ffffff;
             transition: 0.2s;
             border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Agrega una sombra */
-            margin-right: 8px; /* Añade un espacio entre los botones */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            margin-right: 8px;
         }
 
             .custom-btn:hover {
                 background-color: #5d6066;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Aumenta la sombra al hacer hover */
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
             }
-
     </style>
 </head>
 <body>
@@ -79,19 +76,27 @@
         <a href="javascript:void(0)" class="close-btn" onclick="closeSidebar()">
             <i class="fas fa-times"></i>
         </a>
-        <a asp-controller="Categoria" asp-action="Create" class="btn custom-btn">Crear Categoría</a>
-        <a asp-controller="Categoria" asp-action="Edit" class="btn custom-btn">Editar Categoria</a>
-        <a asp-controller="Prioridad" asp-action="create" class="btn custom-btn"> prioridad</a>
-        <a asp-controller="Cargo" asp-action="create" class="btn custom-btn"> Cargo</a>
-
-
+        <a asp-controller="Categoria" asp-action="Create" class="btn custom-btn">
+            <i class="fas fa-plus"></i> Crear Categoría
+        </a>
+        <a asp-controller="Categoria" asp-action="Edit" class="btn custom-btn">
+            <i class="fas fa-edit"></i> Editar Categoría
+        </a>
+        <a asp-controller="Prioridad" asp-action="create" class="btn custom-btn">
+            <i class="fas fa-tasks"></i> Prioridad
+        </a>
+        <a asp-controller="Cargo" asp-action="create" class="btn custom-btn">
+            <i class="fas fa-briefcase"></i> Cargo
+        </a>
     </div>
 
     <!-- Contenido principal -->
-    <div >
+    <div id="main">
         <!-- Contenido principal de tu página -->
         <h2>Gestor de Tareas</h2>
-
+        <div class="text-center">
+            <h1 class="display-4">¡ESTAS SON TUS TAREAS DEL DIA!</h1>
+        </div>
     </div>
 
     <!-- Scripts de Bootstrap y jQuery (asegúrate de incluir jQuery antes de Bootstrap) -->
@@ -110,8 +115,6 @@
             document.getElementById('main').style.marginLeft = '200px';
         }
     </script>
-    
+
 </body>
 </html>
-
-

@@ -70,8 +70,8 @@ public async Task<Categoria> GetById(Categoria categoria)
         // Llama al método GetByIdAsync de CategoriaDAL
         return await CategoriaDAL.GetByIdAsync(categoria.Id);
     }
-    catch (Exception ex)
-    {
+      catch (Exception ex)
+      {
         // Loguea el error para su posterior análisis
         Console.WriteLine($"Error en GetById: {ex.Message}");
 
