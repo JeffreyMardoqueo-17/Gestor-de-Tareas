@@ -53,10 +53,10 @@ namespace GestordeTareas.UI.Controllers
         }
 
         // GET: PrioridadController/Edit/5
-        public async Task<ActionResult> Edit(int id)
+        public async Task<ActionResult> EditPartial(int id)
         {
             var prioridad = await _prioridadBL.GetById(new Prioridad { Id = id });
-            return View(prioridad);
+            return PartialView("Edit",prioridad);
         }
 
         // POST: PrioridadController/Edit/5
@@ -84,21 +84,23 @@ namespace GestordeTareas.UI.Controllers
 
         }
 
-        // POST: PrioridadController/Delete/5
+        // POST: PrioridadController/DeleteConfirmed/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Delete(int id, Prioridad prioridad)
+        public async Task<ActionResult> DeleteConfirmed(int id)
         {
             try
             {
-                await _prioridadBL.DeleteAsync(prioridad);
+                await _prioridadBL.DeleteAsync(new Prioridad { Id = id });
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
                 ViewBag.Error = ex.Message;
-                return View(prioridad);
+                return PartialView("Delete", new Prioridad { Id = id });
             }
         }
+
+
     }
 }
