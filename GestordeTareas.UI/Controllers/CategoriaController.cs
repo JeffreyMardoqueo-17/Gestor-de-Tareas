@@ -26,16 +26,16 @@ namespace GestordeTareas.UI.Controllers
 
 
         // GET: CategoriaController/Details/5
-        public async Task<ActionResult> Details(int id)
+        public async Task<ActionResult> DetailsPartial(int id)
         {
             var categoria = await _categoriaBL.GetById(new Categoria { Id = id });
-            return View(categoria);
+            return PartialView("Details", categoria);
         }
 
         // GET: CategoriaController/Create
         public ActionResult Create()
         {
-            return View();
+            return PartialView("Create");
         }
 
         // POST: CategoriaController/Create
@@ -51,7 +51,7 @@ namespace GestordeTareas.UI.Controllers
             catch (Exception ex)
             {
                 ViewBag.Error = ex.Message;
-                return View();
+                return PartialView("Create", categoria);
             }
         }
 
@@ -59,7 +59,7 @@ namespace GestordeTareas.UI.Controllers
         public async Task<ActionResult> Edit(int id)
         {
             var categoria = await _categoriaBL.GetById(new Categoria { Id = id });
-            return View(categoria);
+            return PartialView("Edit", categoria);
         }
 
         // POST: CategoriaController/Edit/5
@@ -83,7 +83,7 @@ namespace GestordeTareas.UI.Controllers
         public async Task<ActionResult> Delete(int id)
         {
             var categoria = await _categoriaBL.GetById(new Categoria { Id = id });
-            return View(categoria);
+            return PartialView("Delete", categoria);
 
         }
 
