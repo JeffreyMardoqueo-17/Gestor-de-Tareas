@@ -20,7 +20,7 @@ namespace GestordeTareas.UI.Controllers
             var categoria = await _categoriaBL.GetAllAsync();
             return View(categoria);
             List<Categoria> Lista = await _categoriaBL.GetAllAsync();
-             
+
             return View(Lista);
         }
 

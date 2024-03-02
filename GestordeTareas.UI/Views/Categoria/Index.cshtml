@@ -79,6 +79,7 @@
         </tr>
     </thead>
     <tbody>
+<<<<<<< HEAD
         @foreach (var anotherItem in Model)
         {
             <tr>
@@ -97,6 +98,23 @@
                 </td>
             </tr>
         }
+=======
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new{ id = item.Id }, new { @class = "btn btn-outline-info" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-outline-secondary" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-outline-danger" })
+            </td>
+        </tr>
+}
+>>>>>>> ea87e274bbe99a6e5b22a5d2cbac394901ef50f8
     </tbody>
 </table>
 

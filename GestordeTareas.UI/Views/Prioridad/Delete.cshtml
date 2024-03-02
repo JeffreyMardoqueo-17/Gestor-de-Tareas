@@ -1,5 +1,6 @@
 ﻿@model GestordeTaras.EN.Prioridad
 
+<<<<<<< HEAD
 <div class="modal fade" id="eliminarPrioridadModal" tabindex="-1" role="dialog" aria-labelledby="modalEliminarPrioridadLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -34,4 +35,36 @@
             </div>
         </div>
     </div>
+=======
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Eliminar Prioriadad</h1>
+
+<h3>¿Seguro que quiere eliminar la prioridad?</h3>
+<div>
+    <h4>Prioridad</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-warning btn-sm">Atras</a>
+    </form>
+
+>>>>>>> ea87e274bbe99a6e5b22a5d2cbac394901ef50f8
 </div>
