@@ -1,7 +1,11 @@
 ﻿@model IEnumerable<GestordeTaras.EN.Prioridad>
 
 @{
+<<<<<<< HEAD
     ViewData["Title"] = "Prioridades";
+=======
+    ViewData["Title"] = "Index";
+>>>>>>> parent of 53545a3 (hi)
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 }
 
@@ -34,7 +38,11 @@
                     <a href="@Url.Action("Details", new { id = item.Id })" class="btn btn-warning btn-sm">
                         <i class="fas fa-eye"></i> Detalles
                     </a>
+<<<<<<< HEAD
                     <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que deseas eliminar esta prioridad?')">
+=======
+                    <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-danger btn-sm">
+>>>>>>> parent of 53545a3 (hi)
                         <i class="fas fa-trash-alt"></i> Eliminar
                     </a>
                 </td>
