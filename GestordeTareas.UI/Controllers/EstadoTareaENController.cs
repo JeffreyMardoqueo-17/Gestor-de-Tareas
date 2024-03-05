@@ -5,19 +5,19 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GestordeTareas.UI.Controllers
 {
-    public class CategoriaController : Controller
+    public class EstadoTareaENController : Controller
     {
-        private readonly CategoriaBL _categoriaBL;
+        private readonly EstadoTareaBL _estadoTareaBL;
 
-        public CategoriaController()
+        public EstadoTareaENController()
         {
-            _categoriaBL = new CategoriaBL(); // Inicializamos la capa de negocio
+            _estadoTareaBL = new EstadoTareaBL(); // Inicializamos la capa de negocio
         }
 
         // GET: CategoriaController
         public async Task<ActionResult> Index()
         {
-            List<Categoria> Lista = await _categoriaBL.GetAllAsync();
+            List<EstadoTareaEN> Lista = await _estadoTareaBL.GetAllAsync();
 
             return View(Lista);
         }
@@ -25,8 +25,8 @@ namespace GestordeTareas.UI.Controllers
         // GET: CategoriaController/Details/5
         public async Task<ActionResult> DetailsPartial(int id)
         {
-            var categoria = await _categoriaBL.GetById(new Categoria { Id = id });
-            return PartialView("Details", categoria);
+            var estadoTarea = await _estadoTareaBL.GetById(new EstadoTareaEN { Id = id });
+            return PartialView("Details", estadoTarea);
         }
 
         // GET: CategoriaController/Create
@@ -38,66 +38,66 @@ namespace GestordeTareas.UI.Controllers
         // POST: CategoriaController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(Categoria categoria)
+        public async Task<ActionResult> Create(EstadoTareaEN estadoTarea)
         {
             try
             {
-                int result = await _categoriaBL.CreateAsync(categoria);
+                int result = await _estadoTareaBL.CreateAsync(estadoTarea);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
                 ViewBag.Error = ex.Message;
-                return PartialView("Create", categoria);
+                return PartialView("Create", estadoTarea);
             }
         }
 
         // GET: CategoriaController/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
-            var categoria = await _categoriaBL.GetById(new Categoria { Id = id });
-            return PartialView("Edit", categoria);
+            var estadoTarea = await _estadoTareaBL.GetById(new EstadoTareaEN { Id = id });
+            return PartialView("Edit", estadoTarea);
         }
 
         // POST: CategoriaController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(int id, Categoria categoria)
+        public async Task<ActionResult> Edit(int id, EstadoTareaEN estadoTarea)
         {
             try
             {
-                int result = await _categoriaBL.UpdateAsync(categoria);
+                int result = await _estadoTareaBL.UpdateAsync(estadoTarea);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
                 ViewBag.Error = ex.Message;
-                return View(categoria);
+                return View(estadoTarea);
             }
         }
 
         // GET: CategoriaController/Delete/5
         public async Task<ActionResult> Delete(int id)
         {
-            var categoria = await _categoriaBL.GetById(new Categoria { Id = id });
-            return PartialView("Delete", categoria);
+            var estadoTarea = await _estadoTareaBL.GetById(new EstadoTareaEN { Id = id });
+            return PartialView("Delete", estadoTarea);
 
         }
 
         // POST: CategoriaController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Delete(int id, Categoria categoria)
+        public async Task<ActionResult> Delete(int id, EstadoTareaEN estadoTarea)
         {
             try
             {
-                await _categoriaBL.DeleteAsync(categoria);
+                await _estadoTareaBL.DeleteAsync(estadoTarea);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
                 ViewBag.Error = ex.Message;
-                return View(categoria);
+                return View(estadoTarea);
             }
         }
     }
