@@ -33,15 +33,15 @@
                 <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
                 <td>
                     <a href="#" class="btn btn-primary btn-sm" onclick="cargarVistaEdit(@item.Id)">
-                        <i class="fas fa-edit"></i> 
+                        <i class="fas fa-edit"></i>
                     </a>
 
                     <a href="#" class="btn btn-warning btn-sm" onclick="cargarVistaDetails(@item.Id)">
-                        <i class="fas fa-eye"></i> 
+                        <i class="fas fa-eye"></i>
                     </a>
 
                     <a href="#" class="btn btn-danger btn-sm" onclick="cargarVistaDelete(@item.Id)">
-                        <i class="fas fa-trash-alt"></i> 
+                        <i class="fas fa-trash-alt"></i>
                     </a>
 
                 </td>
@@ -50,6 +50,10 @@
     </tbody>
 </table>
 
+<<<<<<< HEAD
+=======
+<!-- Modales -->
+>>>>>>> 8618e00b1a8163936ac4cb4ffa3041cf06a85ee8
 <!-- Modal de creación -->
 <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -180,7 +184,7 @@
             }
         });
     }
-    
+
     function eliminarCategoria() {
         // Enviar una solicitud AJAX para eliminar la categoría
         $.ajax({
@@ -245,7 +249,12 @@
             }
         });
     }
+<<<<<<< HEAD
  
+=======
+
+
+>>>>>>> 8618e00b1a8163936ac4cb4ffa3041cf06a85ee8
 </script>
 
 
