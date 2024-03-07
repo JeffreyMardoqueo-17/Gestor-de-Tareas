@@ -76,16 +76,19 @@
         <a href="javascript:void(0)" class="close-btn" onclick="closeSidebar()">
             <i class="fas fa-times"></i>
         </a>
-        <a asp-controller="Categoria" asp-action="Create" class="btn custom-btn">
+        <a asp-controller="Categoria"  class="btn custom-btn">
             <i class="fas fa-plus"></i> Crear Categoría
         </a>
-        <a asp-controller="Categoria" asp-action="Edit" class="btn custom-btn">
+
+        @* editar *@
+        <a asp-controller="/Categoria/Edit" class="btn custom-btn">
             <i class="fas fa-edit"></i> Editar Categoría
         </a>
-        <a asp-controller="Prioridad" asp-action="create" class="btn custom-btn">
+        <a asp-controller="Prioridad"  class="btn custom-btn">
             <i class="fas fa-tasks"></i> Prioridad
         </a>
-        <a asp-controller="Cargo" asp-action="create" class="btn custom-btn">
+       
+        <a asp-controller="Cargo"  class="btn custom-btn">
             <i class="fas fa-briefcase"></i> Cargo
         </a>
     </div>

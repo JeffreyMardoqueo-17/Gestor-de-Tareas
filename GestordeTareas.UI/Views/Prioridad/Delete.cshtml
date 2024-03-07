@@ -21,9 +21,7 @@
             @Html.DisplayFor(model => model.Nombre)
         </dd>
     </dl>
-    <form asp-action="Delete" method="post">
+    <form asp-action="Delete" id="deleteForm" method="post">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Eliminar" class="btn btn-danger" />
-        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>
