@@ -40,8 +40,18 @@ namespace GestordeTaras.EN
         public int IdPrioridad { get; set; }
 
         [ForeignKey("EstadoTarea")]
-        [Required(ErrorMessage = "El Estado es Requerido")]
+        [Required(ErrorMessage = "El Id es Requerido")]
         [Display(Name = "Estado de la Tarea")]
         public int IdEstadoTarea { get; set; }
+
+        [ForeignKey("Proyecto")]
+        [Required(ErrorMessage = "El Id es Requerido")]
+        [Display(Name = "Id del proyecto")]
+        public int ProyectoID { get; set; }
+
+        [ForeignKey("GrupoTrabajo")]
+        [Required(ErrorMessage = "El Id es Requerido")]
+        [Display(Name = "Id del Grupo de ")]
+        public int GrupoTrabajoID { get; set; }
     }
 }
