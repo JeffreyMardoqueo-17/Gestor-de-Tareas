@@ -28,6 +28,9 @@ namespace GestordeTaras.EN
         [Display(Name = "Fecha  de vencimiento")]
         public DateTime FechaVencimiento { get; set; }
 
+        [Required(ErrorMessage = "La Fecha de Creacion es Requerida")]
+        [Display(Name = "Fecha  de Creacion")]
+        public DateTime FechaCreacion { get; set; }
 
         [ForeignKey("Categoria")]
         [Required(ErrorMessage = " La Categoría es Requerida")]

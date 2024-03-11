@@ -31,6 +31,15 @@ namespace GestordeTareas.DAL
                 if (tareaBD != null)
                 {
                     tareaBD.Nombre = tarea.Nombre;
+                    tareaBD.Descripcion = tarea.Descripcion;
+                    tareaBD.FechaVencimiento = tarea.FechaVencimiento;
+                    tareaBD.FechaCreacion = tarea.FechaCreacion;
+                    tareaBD.IdCategoria = tarea.IdCategoria;
+                    tareaBD.IdPrioridad = tarea.IdPrioridad;
+                    tareaBD.IdEstadoTarea = tarea.IdEstadoTarea;
+                    tareaBD.ProyectoID = tarea.ProyectoID;
+                    tareaBD.GrupoTrabajoID = tarea.GrupoTrabajoID;
+
                     contextoBD.Update(tareaBD);
                     resul = await contextoBD.SaveChangesAsync();
                 }
