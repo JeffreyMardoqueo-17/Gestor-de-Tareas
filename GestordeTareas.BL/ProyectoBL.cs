@@ -14,21 +14,23 @@ namespace GestordeTareas.BL
         {
             return await ProyectoDAL.CreateAsync(proyecto);
         }
-        public async Task<int> UpdateAsync(Proyecto proyecto)
-        {
-            return await ProyectoDAL.UpdateAsync(proyecto);
-        }
+
+
         public async Task<int> DeleteAsync(Proyecto proyecto)
         {
             return await ProyectoDAL.DeleteAsync(proyecto);
         }
-        public async Task<Tarea> GetById(Proyecto proyecto)
+
+        public async Task<Proyecto> GetByIdAsync(Proyecto proyecto)
         {
             return await ProyectoDAL.GetByIdAsync(proyecto);
         }
+
         public async Task<List<Proyecto>> GetAllAsync()
         {
             return await ProyectoDAL.GetAllAsync();
         }
+
+        
     }
 }

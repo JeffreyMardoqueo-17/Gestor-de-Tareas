@@ -19,7 +19,7 @@ namespace GestordeTareas.DAL
 
         public DbSet<EstadoTareaEN> EstadoTareaEN { get; set; }
 
-        public DbSet<EstadoTareaEN> EstadoTarea { get; set; }
+       
         public DbSet<Tarea> Tarea { get; set; }
        
         public DbSet<AsignacionTareas> AsignacionTareas { get; set; }
