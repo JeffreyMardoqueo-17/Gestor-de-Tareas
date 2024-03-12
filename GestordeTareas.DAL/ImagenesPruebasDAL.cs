@@ -79,6 +79,15 @@ namespace GestordeTareas.DAL
             }
             return imagenesPruebasDb!;
         }
-        
+
+        public static Task<List<ImagenesPruebas>> SearchAsync(ImagenesPruebas imagenesPruebas)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static Task<List<ImagenesPruebas>> SearchIncludeAdAsync(ImagenesPruebas imagenesPruebas)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
