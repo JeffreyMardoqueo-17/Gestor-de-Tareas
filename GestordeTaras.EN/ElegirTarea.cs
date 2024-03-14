@@ -13,24 +13,23 @@ namespace GestordeTaras.EN
         [Key]
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "Campo obligatorio")]
         [ForeignKey("Tarea")]
-        [Required(ErrorMessage ="Campo Requerido")]
-        [Display(Name ="Id Tarea")]
+        [Display(Name = "Tarea")]
         public int IdTarea { get; set; }
 
-        [ForeignKey("Colaborador")]
-        [Required(ErrorMessage ="Id colaborador es Requerido")]
-        [Display(Name ="Id Colaborador")]
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [ForeignKey("Colaboradores")]
+        [Display(Name = "Colaboradores")]
         public int IdColaborador { get; set; }
 
-        [Required(ErrorMessage = "Campo Requerido")]
-        [Display(Name = "Fecha Asignacion ")]
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [Display(Name = "Fecha de Asignacion")]
         public DateTime FechaAsignacion { get; set; }
 
+        [Required(ErrorMessage = "Campo obligatorio")]
         [ForeignKey("EstadoTarea")]
-        [Required(ErrorMessage ="Id Estado es Requerido ")]
-        [Display(Name ="Id Estado Tarea")]
+        [Display(Name = "Estado Tarea")]
         public int IdEstadoTarea { get; set; }
-
     }
 }

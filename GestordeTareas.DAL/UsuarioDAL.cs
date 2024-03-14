@@ -11,8 +11,9 @@ namespace GestordeTareas.DAL
     public class UsuarioDAL
     {
         // Método para crear un nuevo usuario en la base de datos de forma asincrónica.
-        public static async Task<int> Create(Usuario usuario)
+        public static async Task<int> CreateAsync(Usuarios usuario)
         {
+
             int result = 0;
             using (var bdContext = new ContextoBD())
             {
@@ -27,13 +28,13 @@ namespace GestordeTareas.DAL
         }
 
         // Método para actualizar un usuario existente en la base de datos de forma asincrónica.
-        public static async Task<int> Update(Usuario usuario)
+        public static async Task<int> UpdateAsync(Usuarios usuario)
         {
             int result = 0;
             using (var bdContext = new ContextoBD())
             {
                 // Busca el usuario existente por su ID.
-                var usuarioDB = await bdContext.Usuario.FirstOrDefaultAsync(a => a.Id == usuario.Id);
+                var usuarioDB = await bdContext.Usuarios.FirstOrDefaultAsync(a => a.Id == usuario.Id);
                 if (usuarioDB != null)
                 {
                     // Actualiza las propiedades del usuario con los nuevos valores.
@@ -58,17 +59,17 @@ namespace GestordeTareas.DAL
         }
 
         // Método para eliminar un usuario de la base de datos de forma asincrónica.
-        public static async Task<int> Delete(Usuario usuario)
+        public static async Task<int> DeleteAsync(Usuarios usuario)
         {
             int result = 0;
             using (var bdContext = new ContextoBD())
             {
                 // Busca el usuario existente por su ID.
-                var usuarioDB = await bdContext.Usuario.FirstOrDefaultAsync(u => u.Id == usuario.Id);
+                var usuarioDB = await bdContext.Usuarios.FirstOrDefaultAsync(u => u.Id == usuario.Id);
                 if (usuarioDB != null)
                 {
                     // Elimina el usuario del DbSet correspondiente en el contexto.
-                    bdContext.Usuario.Remove(usuarioDB);
+                    bdContext.Usuarios.Remove(usuarioDB);
                     // Guarda los cambios en la base de datos.
                     result = await bdContext.SaveChangesAsync();
                 }
@@ -78,29 +79,34 @@ namespace GestordeTareas.DAL
         }
 
         // Método para obtener un usuario por su ID de forma asincrónica.
-        public static async Task<Usuario> GetByIdAsync(Usuario usuario)
+        public static async Task<Usuarios> GetByIdAsync(Usuarios usuario)
         {
-            var usuarioDB = new Usuario();
+            var usuarioDB = new Usuarios();
             using (var bdContexto = new ContextoBD())
             {
                 // Busca el usuario por su ID y asigna el resultado a la variable usuarioDB.
-                usuarioDB = await bdContexto.Usuario.FirstOrDefaultAsync(u => u.Id == usuario.Id);
+                usuarioDB = await bdContexto.Usuarios.FirstOrDefaultAsync(u => u.Id == usuario.Id);
             }
             // Retorna el usuario encontrado.
             return usuarioDB;
         }
 
         // Método para obtener todos los usuarios de la base de datos de forma asincrónica.
-        public static async Task<List<Usuario>> GetAllAsync()
+        public static async Task<List<Usuarios>> GetAllAsync()
         {
-            var usuarios = new List<Usuario>();
+            var usuarios = new List<Usuarios>();
             using (var bdContexto = new ContextoBD())
             {
                 // Obtiene todos los usuarios y los asigna a la variable usuarios.
-                usuarios = await bdContexto.Usuario.ToListAsync();
+                usuarios = await bdContexto.Usuarios.ToListAsync();
             }
             // Retorna la lista de usuarios.
             return usuarios;
+        }
+
+        public static async Task<List<Usuarios>> SearchAsync(Usuarios usuario)
+        {
+            throw new NotImplementedException();
         }
     }
 

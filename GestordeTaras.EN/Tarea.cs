@@ -13,7 +13,6 @@ namespace GestordeTaras.EN
         [Key]
         public int Id { get; set; }
 
-
         [Required(ErrorMessage = " El Nombre es Requerido")]
         [MaxLength(50, ErrorMessage = "Máximo 50 Caractéres")]
         [Display(Name = "Nombre")]
@@ -56,5 +55,6 @@ namespace GestordeTaras.EN
         [Required(ErrorMessage = "El Id es Requerido")]
         [Display(Name = "Id del Grupo de ")]
         public int GrupoTrabajoID { get; set; }
+
     }
 }

@@ -12,7 +12,8 @@ namespace GestordeTaras.EN
         [Key]
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="El campo es requerido")]
+        [StringLength(50, ErrorMessage ="Maximo 40 caracteres")]
         public string Nombre { get; set; } = string.Empty;
 
     }

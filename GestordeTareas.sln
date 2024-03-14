@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestordeTaras.EN", "GestordeTaras.EN\GestordeTaras.EN.csproj", "{A587080F-2DB2-487B-A577-2C871EF461B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestordeTaras.EN", "GestordeTaras.EN\GestordeTaras.EN.csproj", "{A587080F-2DB2-487B-A577-2C871EF461B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestordeTareas.DAL", "GestordeTareas.DAL\GestordeTareas.DAL.csproj", "{3882E9AD-DB01-494D-83BB-771BB3236179}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestordeTareas.DAL", "GestordeTareas.DAL\GestordeTareas.DAL.csproj", "{3882E9AD-DB01-494D-83BB-771BB3236179}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestordeTareas.BL", "GestordeTareas.BL\GestordeTareas.BL.csproj", "{DE7C6BAB-5FFF-4019-9AAD-73C7A2046767}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestordeTareas.BL", "GestordeTareas.BL\GestordeTareas.BL.csproj", "{DE7C6BAB-5FFF-4019-9AAD-73C7A2046767}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestordeTareas.UI", "GestordeTareas.UI\GestordeTareas.UI.csproj", "{20DB97C4-17A3-4D7B-A662-79B2E9E0374D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestordeTareas.UI", "GestordeTareas.UI\GestordeTareas.UI.csproj", "{20DB97C4-17A3-4D7B-A662-79B2E9E0374D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

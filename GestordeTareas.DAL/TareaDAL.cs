@@ -82,5 +82,10 @@ namespace GestordeTareas.DAL
             }
             return tareas;
         }
+
+        public static Task<Proyecto> GetByIdAsync(Proyecto proyecto)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -13,10 +13,11 @@ namespace GestordeTaras.EN
         [Key]
         public int Id { get; set; }
 
+
         [ForeignKey("Usuarios")]
         [Required(ErrorMessage = "Campo obligatorio")]
-        [Display(Name = "Cargo")]
-        public int UsuarioId { get; set; }
+        [Display(Name = "Usuarioo")]
+        public int UsuarioID { get; set; }
 
         [Required(ErrorMessage = "Campo obligatorio")]
         [MaxLength(100, ErrorMessage = "maximo 100 caracteres")]

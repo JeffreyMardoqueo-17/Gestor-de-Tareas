@@ -13,15 +13,16 @@ namespace GestordeTaras.EN
         [Key]
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "Campo obligatorio")]
         [ForeignKey("ElegirTarea")]
-        [Required(ErrorMessage ="El Id es Requerido")]
-        [Display(Name ="Id Elegir Tareas")]
+        [Display(Name = "Elegir Tarea")]
         public int IdElegirTarea { get; set; }
 
-        [Required(ErrorMessage ="La Fecha Finalizacio es Reqeurida")]
-        [Display(Name = "FechaFinalizacion")]
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [Display(Name = "Fecha de finalizacion")]
         public DateTime FechaFinalizacion { get; set; }
 
+        [Required(ErrorMessage = "Campo obligatorio")]
         [Display(Name = "Comentarios")]
         public string Comentarios { get; set; } = string.Empty;
     }

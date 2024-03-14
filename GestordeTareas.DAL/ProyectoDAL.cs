@@ -1,5 +1,4 @@
-﻿using GestordeTaras.EN;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +9,7 @@ namespace GestordeTareas.DAL
 {
     public class ProyectoDAL
     {
-        public async static Task<int> CreateAsync(Proyecto proyecto)
+        public async static Task<int> CreateAsync(GestordeTaras.EN.Proyecto proyecto)
         {
             int result = 0;
             using (var dbContexto = new ContextoBD())
@@ -22,8 +21,8 @@ namespace GestordeTareas.DAL
         }
 
 
-        public async Task<int> UpdateAsync(Proyecto proyecto)
-        {
+        public static async  Task<int> UpdateAsync(GestordeTaras.EN.Proyecto proyecto)
+        { 
             try
             {
                 using (var dbContexto = new ContextoBD())
@@ -63,7 +62,7 @@ namespace GestordeTareas.DAL
 
 
 
-        public static async Task<int> DeleteAsync(Proyecto proyecto)
+        public static async Task<int> DeleteAsync(GestordeTaras.EN.Proyecto proyecto)
         {
             int result = 0;
             using (var dbContext = new ContextoBD())
@@ -77,9 +76,9 @@ namespace GestordeTareas.DAL
             }
             return result;
         }
-       
 
-        public static async Task<Proyecto> GetByIdAsync(int proyectoId)
+
+        public static async Task<GestordeTaras.EN.Proyecto> GetByIdAsync(int proyectoId)
         {
             using (var dbContexto = new ContextoBD())
             {
@@ -88,9 +87,9 @@ namespace GestordeTareas.DAL
             }
         }
 
-        public static async Task<List<Proyecto>> GetAllAsync(Proyecto proyecto)
+        public static async Task<List<GestordeTaras.EN.Proyecto>> GetAllAsync(GestordeTaras.EN.Proyecto proyecto)
         {
-            var _proyectos = new List<Proyecto>();
+            var _proyectos = new List<GestordeTaras.EN.Proyecto>();
             using (var dbContexto = new ContextoBD())
             {
                 _proyectos = await dbContexto.Proyecto.ToListAsync();
@@ -98,12 +97,12 @@ namespace GestordeTareas.DAL
             return _proyectos;
         }
 
-        public static Task<List<Proyecto>> GetAllAsync()
+        public static Task<List<GestordeTaras.EN.Proyecto>> GetAllAsync()
         {
             throw new NotImplementedException();
         }
 
-        public static Task<Proyecto> GetByIdAsync(Proyecto proyecto)
+        public static async Task<GestordeTaras.EN.Proyecto> GetByIdAsync(GestordeTaras.EN.Proyecto proyecto)
         {
             throw new NotImplementedException();
         }

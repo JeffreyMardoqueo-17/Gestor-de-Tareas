@@ -13,22 +13,19 @@ namespace GestordeTaras.EN
         [Key]
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "Campo obligatorio")]
         [ForeignKey("Administradores")]
-        [Required(ErrorMessage =" Este campo es Requerido")]
-        [Display(Name ="Id del Adminstrador")]
-        public int AdministradorId { get; set; }
+        [Display(Name = "Admin")]
+        public int AdministradorID { get; set; }
 
-        [ForeignKey("Colaboradores")]   
-        [Required(ErrorMessage = " Este campo es Requerido")]
-        [Display(Name = "Id del Colaborador")]
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [ForeignKey("Colaboradores")]
+        [Display(Name = "Colaborador")]
         public int ColaboradorID { get; set; }
 
-
+        [Required(ErrorMessage = "Campo obligatorio")]
         [ForeignKey("Proyecto")]
-        [Required(ErrorMessage = " Este campo es Requerido")]
-        [Display(Name = "Id del Proyecto")]
+        [Display(Name = "Proyecto")]
         public int ProyectoID { get; set; }
-
-       
     }
 }

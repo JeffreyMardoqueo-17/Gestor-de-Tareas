@@ -33,5 +33,20 @@ namespace GestordeTareas.BL
             return await ImagenesPruebasDAL.GetByIdAsync(imagenesPruebas);
         }
 
+
+        public async Task<List<ImagenesPruebas>> GetAllAsync()
+        {
+            return await ImagenesPruebasDAL.GetAllAsync();
+        }
+
+        public async Task<List<ImagenesPruebas>> SearchAsync(ImagenesPruebas imagenesPruebas)
+        {
+            return await ImagenesPruebasDAL.SearchAsync(imagenesPruebas);
+        }
+
+        public async Task<List<ImagenesPruebas>> SearchIncludeAdAsync(ImagenesPruebas imagenesPruebas)
+        {
+            return await ImagenesPruebasDAL.SearchIncludeAdAsync(imagenesPruebas);
+        }
     }
 }
