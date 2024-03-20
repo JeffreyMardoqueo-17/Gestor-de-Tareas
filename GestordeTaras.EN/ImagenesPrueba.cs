@@ -8,25 +8,26 @@ using System.Threading.Tasks;
 
 namespace GestordeTaras.EN
 {
-    public class ImagenTarea
+    public class ImagenesPrueba
     {
+
         [Key]
         public int Id { get; set; }
-
 
         [Required(ErrorMessage = "La Ruta de la Imagen es Requerida")]
         [MaxLength(4000, ErrorMessage = "Máximo 4000 Caractéres")]
         [Display(Name = "RutaImagen")]
-        public string RutaImagen { get; set; } = string.Empty;
+        public string Imagen { get; set; } = string.Empty;
 
 
-        [ForeignKey("Tarea")]
-        [Required(ErrorMessage = "El Estado es Requerido")]
+        [ForeignKey("TareaFinalizada")]
+        [Required(ErrorMessage = "Tarea finalizada es Requerida")]
         [Display(Name = "Estado de la Tarea")]
-        public int IdTarea { get; set; }
+        public int IdTareaFinalizada { get; set; }
 
-        public int Top_Aux { get; set; }
-        public Tarea Tarea { get; set; } = new Tarea();
-        
+        [NotMapped]
+        public int Top_Aux { get; set; } // propiedad auxiliar
+        public TareaFinalizada TareaFinalizada { get; set; } = new TareaFinalizada(); // propiedad de navegación
+
     }
 }

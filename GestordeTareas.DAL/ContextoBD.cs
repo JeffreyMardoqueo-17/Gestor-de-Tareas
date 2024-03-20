@@ -15,16 +15,20 @@ namespace GestordeTareas.DAL
         public DbSet<Cargo> Cargo { get; set; }
         public DbSet<Prioridad> Prioridad { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
-        public DbSet<EstadoTareaEN> EstadoTarea { get; set; }
+        public DbSet<EstadoTarea> EstadoTarea { get; set; }
         public DbSet<Tarea> Tarea { get; set; }
-        public DbSet<ImagenTarea> ImagenTarea { get; set; }
-        public DbSet<ImagenesPruebas> ImagenesPruebas { get; set; }
-        public DbSet<AsignacionTareas> AsignacionTareas { get; set; }
+        public DbSet<ImagenesPrueba> ImagenesPrueba { get; set; }
         public DbSet<Proyecto> Proyecto { get; set; }
+        public DbSet<ElegirTarea> ElegirTarea { get; set; }
 
-           protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=localhost;Database=GestorTareasJ;User=Jeffrey;Password=jeffrey20068f;Encrypt=true;TrustServerCertificate=true;");
+            optionsBuilder.UseSqlServer(@"Data Source=HERNANDEZ\SQLEXPRESS;
+                                           Initial Catalog = GestorTareasBD;
+                                           Integrated Security = true;
+                                           Encrypt = false;
+                                           TrustServerCertificate = true;");
         }
 
     }

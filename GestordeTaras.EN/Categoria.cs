@@ -14,7 +14,7 @@ namespace GestordeTaras.EN
 
         //anotaciones de validacion
         [Required(ErrorMessage = "Este campo es obligatorio")]
-        [StringLength(50, ErrorMessage = "Maximo de caracteres 50")]
+        [MaxLength(50, ErrorMessage = "Maximo de caracteres 50")]
         public string Nombre { get; set; } = string.Empty; //inicializo qeu es un string de logitud cero
     }
 }

@@ -13,23 +13,22 @@ namespace GestordeTaras.EN
         [Key]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Campo obligatorio")]
+
+        [Required]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime FechaAsignacion { get; set; } = DateTime.Now;
+
+        [Required]
         [ForeignKey("Tarea")]
-        [Display(Name = "Tarea")]
         public int IdTarea { get; set; }
 
-        [Required(ErrorMessage = "Campo obligatorio")]
-        [ForeignKey("Colaboradores")]
-        [Display(Name = "Colaboradores")]
-        public int IdColaborador { get; set; }
+        [Required]
+        [ForeignKey("Usuarios")]
+        public int IdUsuario { get; set; }
 
-        [Required(ErrorMessage = "Campo obligatorio")]
-        [Display(Name = "Fecha de Asignacion")]
-        public DateTime FechaAsignacion { get; set; }
-
-        [Required(ErrorMessage = "Campo obligatorio")]
-        [ForeignKey("EstadoTarea")]
-        [Display(Name = "Estado Tarea")]
-        public int IdEstadoTarea { get; set; }
+        [ForeignKey("Proyecto")]
+        [Required(ErrorMessage = "El proyecto es requerido")]
+        [Display(Name = "Proyecto")]
+        public int IdProyecto { get; set; }
     }
 }
