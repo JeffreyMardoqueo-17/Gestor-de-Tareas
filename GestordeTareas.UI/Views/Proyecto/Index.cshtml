@@ -37,40 +37,41 @@
             @foreach (var item in Model)
             {
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700">
-    <td>
-        @Html.DisplayFor(modelItem => item.Titulo)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Descripcion)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Usuario.Nombre)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.FechaFinalizacion)
-    </td>
-    <td class="px-6 py-4 flex justify-center items-center space-x-2">
-        <a href="#" class="btn btn-primary btn-sm flex items-center p-2" onclick="cargarVistaEdit(@item.Id)">
-            <i class="fas fa-edit text-lg"></i>
-        </a>
-        <a href="#" class="btn btn-warning btn-sm flex items-center p-2" onclick="cargarVistaDetails(@item.Id)">
-            <i class="fas fa-eye text-lg"></i>
-        </a>
-        <a href="#" class="btn btn-danger btn-sm flex items-center p-2" onclick="cargarVistaDelete(@item.Id)">
-            <i class="fas fa-trash-alt text-lg"></i>
-        </a>
-        <a href="#" class="btn btn-success btn-sm flex items-center p-2" onclick="seleccionarProyecto(@item.Id)">
-            <i class="fas fa-check text-lg"></i> Seleccionar
-        </a>
-    </td>
-</tr>
-                
-} 
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Titulo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Usuario.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaFinalizacion)
+                    </td>
+                    <td class="px-6 py-4 flex justify-center items-center space-x-2">
+                        <a href="#" class="btn btn-primary btn-sm flex items-center p-2" onclick="cargarVistaEdit(@item.Id)">
+                            <i class="fas fa-edit text-lg"></i>
+                        </a>
+                        <a href="#" class="btn btn-warning btn-sm flex items-center p-2" onclick="cargarVistaDetails(@item.Id)">
+                            <i class="fas fa-eye text-lg"></i>
+                        </a>
+                        <a href="#" class="btn btn-danger btn-sm flex items-center p-2" onclick="cargarVistaDelete(@item.Id)">
+                            <i class="fas fa-trash-alt text-lg"></i>
+                        </a>
+                        <form method="post" asp-action="AccederProyecto" asp-controller="Proyecto">
+                            <input type="hidden" name="idProyecto" value="@item.Id" />
+                            <button type="submit" class="btn btn-success btn-sm flex items-center p-2">
+                                <i class="fas fa-check text-lg"></i> Seleccionar
+                            </button>
+                        </form>
+
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>
-
-
 
 <!-- Modales -->
 <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">

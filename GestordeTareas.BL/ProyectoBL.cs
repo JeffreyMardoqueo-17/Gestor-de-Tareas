@@ -30,5 +30,10 @@ namespace GestordeTareas.BL
         {
             return await ProyectoDAL.GetAllAsync();
         }
+
+        public async Task<List<Proyecto>> SearchAsync(Proyecto projectos)
+        {
+            return await ProyectoDAL.SearchAsync(projectos);
+        }
     }
 }

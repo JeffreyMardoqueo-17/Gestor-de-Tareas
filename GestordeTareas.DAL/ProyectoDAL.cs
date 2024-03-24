@@ -77,5 +77,45 @@ namespace GestordeTareas.DAL
             }
         }
 
+
+        // Metodo para buscar
+        internal static IQueryable<Proyecto> QuerySelect(IQueryable<Proyecto> query, Proyecto proyecto)
+        {
+            if (proyecto.Id > 0)
+                query = query.Where(p => p.Id == proyecto.Id);
+
+            if (!string.IsNullOrWhiteSpace(proyecto.Titulo))
+                query = query.Where(p => p.Titulo.Contains(proyecto.Titulo));
+
+            if (!string.IsNullOrWhiteSpace(proyecto.Descripcion))
+                query = query.Where(p => p.Descripcion.Contains(proyecto.Descripcion));
+
+            if (proyecto.FechaFinalizacion.Year > 1000)
+            {
+                DateTime initialDate = new DateTime(proyecto.FechaFinalizacion.Year, proyecto.FechaFinalizacion.Month, proyecto.FechaFinalizacion.Day, 0, 0, 0);
+                DateTime finalDate = initialDate.AddDays(1).AddMilliseconds(-1);
+                query = query.Where(p => p.FechaFinalizacion >= initialDate && p.FechaFinalizacion <= finalDate);
+            }
+
+            if (proyecto.IdUsuario > 0)
+                query = query.Where(p => p.IdUsuario == proyecto.IdUsuario);
+
+            query = query.OrderByDescending(p => p.Id).AsQueryable();
+
+            return query;
+        }
+
+
+        public static async Task<List<Proyecto>> SearchAsync(Proyecto proyectos)
+        {
+            var projects = new List<Proyecto>();
+            using (var dbContext = new ContextoBD())
+            {
+                var select = dbContext.Proyecto.AsQueryable();
+                select = QuerySelect(select, proyectos);
+                projects = await select.ToListAsync();
+            }
+            return projects;
+        }
     }
 }

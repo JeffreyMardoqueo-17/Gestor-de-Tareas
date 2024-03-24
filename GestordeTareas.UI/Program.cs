@@ -1,23 +1,27 @@
-
-using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using GestordeTareas.UI.Data;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.Cookies;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("GestordeTareasUIContextConnection") ?? throw new InvalidOperationException("Connection string 'GestordeTareasUIContextConnection' not found.");
 
 builder.Services.AddDbContext<GestordeTareasUIContext>(options => options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<GestordeTareasUIContext>();
-var configuration = builder.Configuration;
-// Add services to the container.
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<GestordeTareasUIContext>();
+
 builder.Services.AddControllersWithViews();
 
-// configurar la autenticación
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).
-    AddCookie((options) =>
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
     {
         options.LoginPath = new PathString("/Usuarios/Login");
         options.AccessDeniedPath = new PathString("/home/index");
@@ -25,21 +29,19 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.SlidingExpiration = true;
     });
 
+builder.Services.AddSession(options =>
+{
+    options.Cookie.Name = ".GestordeTareas.Session";
+    options.IdleTimeout = TimeSpan.FromSeconds(3600);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
 var app = builder.Build();
 
-
-//autenticacion con Google
-//builder.Services.AddAuthentication().AddGoogle(googleOptions =>
-//{
-//    googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
-//    googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
-//});
-
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -48,9 +50,10 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseAuthentication(); // poner en uso la autenticación
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
