@@ -48,7 +48,6 @@ namespace GestordeTareas.UI.Controllers
             return PartialView("Create");
         }
 
-        // POST: TareaController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(Tarea tarea)
@@ -57,6 +56,15 @@ namespace GestordeTareas.UI.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    // Obtener el ID del proyecto de la sesión del usuario
+                    int? proyectoId = HttpContext.Session.GetInt32("ProyectoId");
+                    if (proyectoId == null)
+                    {
+                        throw new Exception("No se ha seleccionado ningún proyecto");
+                    }
+
+                    tarea.IdProyecto = proyectoId.Value; // Establecer el ID del proyecto en la tarea
+
                     await LoadDropDownListsAsync();
 
                     // Lógica para crear la nueva tarea

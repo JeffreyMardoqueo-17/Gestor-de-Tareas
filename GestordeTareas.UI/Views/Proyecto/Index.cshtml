@@ -37,31 +37,35 @@
             @foreach (var item in Model)
             {
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700">
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Titulo)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Descripcion)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Usuario.Nombre)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FechaFinalizacion)
-                    </td>
-                    <td class="px-6 py-4 flex justify-center items-center space-x-2">
-                        <a href="#" class="btn btn-primary btn-sm flex items-center p-2" onclick="cargarVistaEdit(@item.Id)">
-                            <i class="fas fa-edit text-lg"></i>
-                        </a>
-                        <a href="#" class="btn btn-warning btn-sm flex items-center p-2" onclick="cargarVistaDetails(@item.Id)">
-                            <i class="fas fa-eye text-lg"></i>
-                        </a>
-                        <a href="#" class="btn btn-danger btn-sm flex items-center p-2" onclick="cargarVistaDelete(@item.Id)">
-                            <i class="fas fa-trash-alt text-lg"></i>
-                        </a>
-                    </td>
-                </tr>
-            }
+    <td>
+        @Html.DisplayFor(modelItem => item.Titulo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Descripcion)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Usuario.Nombre)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FechaFinalizacion)
+    </td>
+    <td class="px-6 py-4 flex justify-center items-center space-x-2">
+        <a href="#" class="btn btn-primary btn-sm flex items-center p-2" onclick="cargarVistaEdit(@item.Id)">
+            <i class="fas fa-edit text-lg"></i>
+        </a>
+        <a href="#" class="btn btn-warning btn-sm flex items-center p-2" onclick="cargarVistaDetails(@item.Id)">
+            <i class="fas fa-eye text-lg"></i>
+        </a>
+        <a href="#" class="btn btn-danger btn-sm flex items-center p-2" onclick="cargarVistaDelete(@item.Id)">
+            <i class="fas fa-trash-alt text-lg"></i>
+        </a>
+        <a href="#" class="btn btn-success btn-sm flex items-center p-2" onclick="seleccionarProyecto(@item.Id)">
+            <i class="fas fa-check text-lg"></i> Seleccionar
+        </a>
+    </td>
+</tr>
+                
+} 
         </tbody>
     </table>
 </div>
@@ -172,6 +176,23 @@
 
 
 <script>
+
+    function seleccionarProyecto(idProyecto) {
+        $.ajax({
+            url: '/Usuario/GuardarIdProyecto',
+            type: 'POST',
+            data: { idProyecto: idProyecto },
+            success: function (response) {
+                console.log('ID del proyecto guardado correctamente');
+                // Aquí podrías redirigir a otra página o realizar alguna otra acción
+                window.location.href = '/Tarea/Index'; // Redirigir a la vista de tareas
+            },
+            error: function (error) {
+                console.error('Error al guardar el ID del proyecto:', error);
+            }
+        });
+    }
+
 
     function submitcreateForm(formId) {
         var formData = $('#' + formId).serialize(); // Recopila los datos del formulario

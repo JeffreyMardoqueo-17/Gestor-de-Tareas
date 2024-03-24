@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.Data;
 using System.Security.Claims;
 
+
 namespace GestordeTareas.UI.Controllers
 {
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme, Roles = "Administrador")]
@@ -207,6 +208,17 @@ namespace GestordeTareas.UI.Controllers
                 return View(actualUser);
             }
         }
+
+        //cuando acceda a un porecto
+        [HttpPost]
+        public IActionResult GuardarIdProyecto(int idProyecto)
+        {
+            // Guardar el ID del proyecto en la sesión o en una cookie
+            HttpContext.Session.SetInt32("ProyectoId", idProyecto);
+
+            return Ok(); // Respondemos con un Ok si todo está correcto
+        }
+
     }
 
 }

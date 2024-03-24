@@ -114,5 +114,33 @@ namespace GestordeTareas.UI.Controllers
                 return View(proyecto);
             }
         }
+
+        //acceder al proyecto 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SeleccionarProyecto(int proyectoId)
+        {
+            try
+            {
+                // Aquí puedes validar el proyectoId si es necesario
+                var proyecto = await _proyectoBL.GetById(new Proyecto { Id = proyectoId });
+                if (proyecto == null)
+                {
+                    throw new Exception("Proyecto no encontrado");
+                }
+
+                // Almacenar el ID del proyecto en la sesión del usuario
+                HttpContext.Session.SetInt32("ProyectoId", proyectoId);
+
+                // Redirigir a la página de tareas
+                return RedirectToAction("Index", "Tarea");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+                return RedirectToAction("Index", "Home"); // Redirigir a la página de inicio en caso de error
+            }
+        }
+
     }
 }
