@@ -13,14 +13,23 @@ namespace GestordeTareas.DAL
             int result = 0;
             using (var dbContexto = new ContextoBD())
             {
+<<<<<<< HEAD
                 tarea.IdProyecto = idProyectoSeleccionado; // Asignar el ID del proyecto a la tarea
                 dbContexto.Tarea.Add(tarea);
                 result = await dbContexto.SaveChangesAsync();
+=======
+                dbContexto.Tarea.Add(tarea); //agrego una nueva tarea
+                result = await dbContexto.SaveChangesAsync();//se guarda a la base de datos
+>>>>>>> b534d9f8831c29814da1321ba4ea8e73f7a671f5
             }
             return result;
         }
 
+<<<<<<< HEAD
 
+=======
+        //--------------------------------METODO MODIFICAR TArea.--------------------------
+>>>>>>> b534d9f8831c29814da1321ba4ea8e73f7a671f5
         public static async Task<int> UpdateAsync(Tarea tarea)
         {
             int result = 0;
@@ -72,6 +81,10 @@ namespace GestordeTareas.DAL
             return tareaBD;
         }
 
+<<<<<<< HEAD
+=======
+        //--------------------------------METODO obtener todas las tareas.--------------------------
+>>>>>>> b534d9f8831c29814da1321ba4ea8e73f7a671f5
         public static async Task<List<Tarea>> GetAllAsync()
         {
             using (var dbContext = new ContextoBD())

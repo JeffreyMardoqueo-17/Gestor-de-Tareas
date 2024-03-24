@@ -19,16 +19,27 @@ namespace GestordeTareas.UI.Controllers
         private readonly TareaBL _tareaBL;
         private readonly CategoriaBL _categoriaBL;
         private readonly PrioridadBL _prioridadBL;
+<<<<<<< HEAD
+=======
+        private readonly EstadoTareaBL _estadoTareaBL;
+>>>>>>> b534d9f8831c29814da1321ba4ea8e73f7a671f5
         private readonly ProyectoBL _proyectoBL;
 
         public TareaController()
         {
+<<<<<<< HEAD
             // Obtener el idProyectoSeleccionado de la sesión
             int idProyectoSeleccionado = HttpContext.Session.GetInt32("IdProyectoSeleccionado") ?? 0;
 
             _tareaBL = new TareaBL(idProyectoSeleccionado);
             _categoriaBL = new CategoriaBL();
             _prioridadBL = new PrioridadBL();
+=======
+            _tareaBL = new TareaBL(); 
+            _categoriaBL = new CategoriaBL();
+            _prioridadBL = new PrioridadBL();
+            _estadoTareaBL = new EstadoTareaBL();
+>>>>>>> b534d9f8831c29814da1321ba4ea8e73f7a671f5
             _proyectoBL = new ProyectoBL();
         }
         // Mostrar la lista de tareas
@@ -45,6 +56,7 @@ namespace GestordeTareas.UI.Controllers
             return PartialView("Details", tarea);
         }
 
+<<<<<<< HEAD
         // Mostrar el formulario de creación de tarea
         [HttpGet]
         public async Task<ActionResult> Create()
@@ -54,12 +66,23 @@ namespace GestordeTareas.UI.Controllers
         }
 
         // Procesar la creación de una nueva tarea
+=======
+        // GET: TareaController/Create
+        public async Task<ActionResult> Create()
+        {
+            await LoadDropDownListsAsync(); //Se llama al método y se espera que cargue
+            return PartialView("Create");
+        }
+
+        // POST: CategoriaController/Create
+>>>>>>> b534d9f8831c29814da1321ba4ea8e73f7a671f5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(Tarea tarea)
         {
             try
             {
+<<<<<<< HEAD
                 if (ModelState.IsValid)
                 {
                     int estadoPendienteId = await EstadoTareaDAL.GetEstadoPendienteIdAsync();
@@ -85,6 +108,14 @@ namespace GestordeTareas.UI.Controllers
                 }
                 await LoadDropDownListsAsync();
                 return View(tarea);
+=======
+                tarea.FechaCreacion = DateTime.Now;
+                int estadoPendienteId = await EstadoTareaDAL.GetEstadoPendienteIdAsync();
+                tarea.IdEstadoTarea = estadoPendienteId;
+
+                int result = await _tareaBL.CreateAsync(tarea);
+                return RedirectToAction(nameof(Index));
+>>>>>>> b534d9f8831c29814da1321ba4ea8e73f7a671f5
             }
             catch (Exception ex)
             {
@@ -93,12 +124,38 @@ namespace GestordeTareas.UI.Controllers
                 return View(tarea);
             }
         }
+       
 
+<<<<<<< HEAD
         // Mostrar el formulario de edición de tarea
         public async Task<ActionResult> Edit(int id)
         {
             var tarea = await _tareaBL.GetByIdAsync(new Tarea { Id = id });
             await LoadDropDownListsAsync();
+=======
+        //MÉTODO PARA CARGAR LISTAS DESPLEGABLES SELECCIONABLES 
+        private async Task LoadDropDownListsAsync()
+        {
+            // Obtener todos los datos de cada una disponibles
+            var categorias = await _categoriaBL.GetAllAsync();
+            var prioridades = await _prioridadBL.GetAllAsync();
+            var estadosTarea = await _estadoTareaBL.GetAllAsync();
+            var proyectos = await _proyectoBL.GetAllAsync();
+
+            // Se crean SelectList para cada entidad con las propiedades Id como valor y Nombre como texto visible
+            ViewBag.Categorias = new SelectList(categorias, "Id", "Nombre");
+            ViewBag.Prioridades = new SelectList(prioridades, "Id", "Nombre");
+            ViewBag.EstadosTarea = new SelectList(estadosTarea, "Id", "Nombre");
+            ViewBag.Proyectos = new SelectList(proyectos, "Id", "Titulo");
+        }
+
+
+        // GET: TareaController/Edit/5
+        public async Task<ActionResult> Edit(int id)
+        {
+            var tarea = await _tareaBL.GetById(new Tarea { Id = id });
+            await LoadDropDownListsAsync(); //Se llama al método y se espera que cargue
+>>>>>>> b534d9f8831c29814da1321ba4ea8e73f7a671f5
             return PartialView("Edit", tarea);
         }
 
