@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GestordeTaras.EN.Tarea>
+﻿@model IEnumerable<GestordeTaras.EN.Proyecto>
 
 @{
     ViewData["Title"] = "Index";
@@ -7,10 +7,10 @@
 
 }
 
-<h1 class="text-5xl mb-8 mt-4 font-extrabold dark:text-white">Tarea</h1>
+<h1 class="text-5xl mb-8 mt-4 font-extrabold dark:text-white">Proyecto</h1>
 <p>
     <a href="#" class="no-underline hover:no-underline text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-lg px-5 py-2.5 text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900 inline-flex items-center" onclick="cargarVistaCreate()">
-        <i class="fas fa-plus text-lg ml-2"></i> Crear Nueva Tarea
+        <i class="fas fa-plus text-lg ml-2"></i> Crear Nuevo Proyecto
     </a>
 </p>
 
@@ -18,53 +18,37 @@
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-600">
         <thead class="text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                <th scope="col" class="px-6 py-3">
-                    @Html.DisplayNameFor(model => model.Id)
+                <th>
+                    @Html.DisplayNameFor(model => model.Titulo)
                 </th>
-                <th scope="col" class="px-6 py-3">
-                    @Html.DisplayNameFor(model => model.Nombre)
-                </th>
-                 <th scope="col" class="px-6 py-3">
+                <th>
                     @Html.DisplayNameFor(model => model.Descripcion)
                 </th>
-              
-                <th scope="col" class="px-6 py-3">
-                    @Html.DisplayNameFor(model => model.FechaCreacion)
+                <th>
+                    @Html.DisplayNameFor(model => model.IdUsuario)
                 </th>
-                <th scope="col" class="px-6 py-3">
-                    @Html.DisplayNameFor(model => model.FechaVencimiento)
+                <th>
+                    @Html.DisplayNameFor(model => model.FechaFinalizacion)
                 </th>
-                <th scope="col" class="px-6 py-3">
-                    @Html.DisplayNameFor(model => model.IdCategoria)
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    @Html.DisplayNameFor(model => model.IdPrioridad)
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    @Html.DisplayNameFor(model => model.IdEstadoTarea)
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    @Html.DisplayNameFor(model => model.IdProyecto)
-                </th>
-                
-                <th scope="col" class="px-6 py-3 text-center">
-                    Acciones
-                </th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700">
-                    <td class="px-6 py-4">@Html.DisplayFor(modelItem => item.Id)</td>
-                    <td class="px-6 py-4">@Html.DisplayFor(modelItem => item.Nombre)</td>
-                    <td class="px-6 py-4">@Html.DisplayFor(modelItem => item.Descripcion)</td>
-                    <td class="px-6 py-4">@Html.DisplayFor(modelItem => item.FechaCreacion)</td>
-                    <td class="px-6 py-4">@Html.DisplayFor(modelItem => item.FechaVencimiento)</td>
-                    <td class="px-6 py-4">@Html.DisplayFor(modelItem => item.Categoria.Nombre)</td>
-                    <td class="px-6 py-4">@Html.DisplayFor(modelItem => item.Prioridad.Nombre)</td>
-                    <td class="px-6 py-4">@Html.DisplayFor(modelItem => item.EstadoTarea.Nombre)</td>
-                    <td class="px-6 py-4">@Html.DisplayFor(modelItem => item.Proyecto.Titulo)</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Titulo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Usuario.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaFinalizacion)
+                    </td>
                     <td class="px-6 py-4 flex justify-center items-center space-x-2">
                         <a href="#" class="btn btn-primary btn-sm flex items-center p-2" onclick="cargarVistaEdit(@item.Id)">
                             <i class="fas fa-edit text-lg"></i>
@@ -89,7 +73,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-purple-700 text-white">
-                <h5 class="modal-title" id="createModalLabel">Crear Tarea</h5>
+                <h5 class="modal-title" id="createModalLabel">Crear Proyecto</h5>
                 <button type="button" class="btn-close bg-white text-white" data-bs-dismiss="modal" aria-label="Close">
                 </button>
             </div>
@@ -117,7 +101,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-purple-700 text-white">
-                <h5 class="modal-title" id="editModalLabel">Editar Tarea</h5>
+                <h5 class="modal-title" id="editModalLabel">Editar Proyecto</h5>
                 <button type="button" class="btn-close bg-white text-white" data-bs-dismiss="modal" aria-label="Close">
                 </button>
             </div>
@@ -143,7 +127,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-purple-700 text-white">
-                <h5 class="modal-title" id="detailsModalLabel">Detalles de la Tarea</h5>
+                <h5 class="modal-title" id="detailsModalLabel">Detalles del Proyecto</h5>
                 <button type="button" class="btn-close bg-white text-white" data-bs-dismiss="modal" aria-label="Close">
                 </button>
             </div>
@@ -167,7 +151,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="deleteModalLabel">Eliminar Tarea</h5>
+                <h5 class="modal-title" id="deleteModalLabel">Eliminar Proyecto</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                 </button>
             </div>
@@ -175,7 +159,7 @@
                 <!-- Contenido de la vista de eliminación se cargará aquí -->
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" onclick="eliminarTarea()">Eliminar</button>
+                <button type="button" class="btn btn-danger" onclick="eliminarProyecto()">Eliminar</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
             </div>
         </div>
@@ -192,7 +176,7 @@
     function submitcreateForm(formId) {
         var formData = $('#' + formId).serialize(); // Recopila los datos del formulario
         $.ajax({
-            url: '/Tarea/Create', // URL de la acción Create en el controlador tarea
+            url: '/Proyecto/Create', // URL de la acción Create en el controlador Proyecto
             type: 'POST',
             data: formData,
             success: function (response) {
@@ -210,7 +194,7 @@
     function submiteditForm(formId) {
         var formData = $('#' + formId).serialize(); // Recopila los datos del formulario
         $.ajax({
-            url: '/Tarea/Edit', // URL de la acción Create en el controlador tarea
+            url: '/Proyecto/Edit', // URL de la acción Create en el controlador Proyecto
             type: 'POST',
             data: formData,
             success: function (response) {
@@ -224,18 +208,18 @@
         });
     }
 
-    function eliminarTarea() {
-        // Enviar una solicitud AJAX para eliminar la tarea
+    function eliminarProyecto() {
+        // Enviar una solicitud AJAX para eliminar el proyecto
         $.ajax({
-            url: '/Tarea/Delete', // URL de la acción POST para eliminar la tarea
+            url: '/Proyecto/Delete', // URL de la acción POST para eliminar el proyecto
             type: 'POST', // Método POST para enviar la solicitud
-            data: $("#deleteForm").serialize(), // Serializar los datos del formulario (que incluye el ID de la categoría)
+            data: $("#deleteForm").serialize(), // Serializar los datos del formulario (que incluye el ID del Proyecto)
             success: function (response) {
-                // Recargar la página después de eliminar la Tarea
+                // Recargar la página después de eliminar el Proyecto
                 window.location.reload();
             },
             error: function (xhr, status, error) {
-                alert('Error al eliminar la Tarea: ' + xhr.responseText);
+                alert('Error al eliminar el proyecto: ' + xhr.responseText);
             }
         });
     }
@@ -244,7 +228,7 @@
 
     function cargarVistaCreate() {
         $.ajax({
-            url: "/Tarea/Create",
+            url: "/Proyecto/Create",
             type: "GET",
             success: function (data) {
                 $("#createModalContent").html(data);
@@ -255,7 +239,7 @@
 
     function cargarVistaEdit(id) {
         $.ajax({
-            url: "/Tarea/Edit/" + id,
+            url: "/Proyecto/Edit/" + id,
             type: "GET",
             success: function (data) {
                 $("#editModalContent").html(data);
@@ -264,25 +248,23 @@
         });
     }
 
-        function cargarVistaDetails(id) {
-            $.ajax({
-                url: "/Tarea/Details/" + id ,
-                type: "GET",
-                success: function (data) {
-                    $("#detailsModalContent").html(data);
-                    $("#detailsModal").modal("show");
-                }
-            });
-        }
-
-
+    function cargarVistaDetails(id) {
+        $.ajax({
+            url: "/Proyecto/DetailsPartial/" + id,
+            type: "GET",
+            success: function (data) {
+                $("#detailsModalContent").html(data);
+                $("#detailsModal").modal("show");
+            }
+        });
+    }
 
     function cargarVistaDelete(id) {
         $.ajax({
-            url: "/Tarea/Delete/" + id,
+            url: "/Proyecto/Delete/" + id,
             type: "GET",
             success: function (data) {
-                $("#deleteModalContent").html(data); // Esto muestra el contenido de la tarea
+                $("#deleteModalContent").html(data); // Esto muestra el contenido del Proyecto
                 $("#deleteModal").modal("show");
             },
             error: function () {
@@ -293,3 +275,4 @@
 
 
 </script>
+

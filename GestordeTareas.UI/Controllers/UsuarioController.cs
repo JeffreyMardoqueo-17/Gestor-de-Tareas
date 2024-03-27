@@ -1,4 +1,4 @@
-﻿
+
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using GestordeTareas.BL;
@@ -177,7 +177,7 @@ namespace GestordeTareas.UI.Controllers
         public async Task<IActionResult> Logout(string returnUrl = null)
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Login", "Usuario");
+            return RedirectToAction("Login", "Usuarios");
         }
 
         //acción que muestra el formulario para cambiar contraseña
@@ -198,7 +198,7 @@ namespace GestordeTareas.UI.Controllers
             {
                 int result = await _usuarioBL.ChangePasswordAsync(user, oldPassword);
                 await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-                return RedirectToAction("Login", "Usuario");
+                return RedirectToAction("Login", "Usuarios");
             }
             catch (Exception ex)
             {

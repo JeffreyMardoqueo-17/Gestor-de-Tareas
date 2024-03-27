@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TuNamespace;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace GestordeTareas.DAL
@@ -20,6 +21,8 @@ namespace GestordeTareas.DAL
         public DbSet<ImagenesPrueba> ImagenesPrueba { get; set; }
         public DbSet<Proyecto> Proyecto { get; set; }
         public DbSet<ElegirTarea> ElegirTarea { get; set; }
+        public DbSet<TareaFinalizada> TareaFinalizada { get; set; }
+
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

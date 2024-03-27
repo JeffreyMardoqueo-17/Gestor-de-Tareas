@@ -1,4 +1,7 @@
-﻿using GestordeTaras.EN;
+﻿
+
+
+using GestordeTaras.EN;
 using GestordeTareas.DAL;
 using System;
 using System.Collections.Generic;
@@ -10,7 +13,6 @@ namespace GestordeTareas.BL
 {
     public class UsuarioBL
     {
-
         public async Task<int> Create(Usuario usuario)
         {
             return await UsuarioDAL.Create(usuario);
@@ -36,9 +38,9 @@ namespace GestordeTareas.BL
             return await UsuarioDAL.GetAllAsync();
         }
 
-        public async Task<List<Usuario>> SearchAsync(Usuario usuario)
+        public async Task<List<Usuario>> SearchAsync(Usuario usuarios)
         {
-            return await UsuarioDAL.SearchAsync(usuario);
+            return await UsuarioDAL.SearchAsync(usuarios);
         }
 
         public async Task<List<Usuario>> SearchIncludeRoleAsync(Usuario user)
@@ -46,17 +48,15 @@ namespace GestordeTareas.BL
             return await UsuarioDAL.SearchIncludeRoleAsync(user);
         }
 
-        public async Task<Usuario> LoginAsync(Usuario usuario)
+        public async Task<Usuario> LoginAsync(Usuario usuarios)
         {
-            return await UsuarioDAL.LoginAsync(usuario);
+            return await UsuarioDAL.LoginAsync(usuarios);
         }
 
         public async Task<int> ChangePasswordAsync(Usuario usuario, string oldPassword)
         {
             return await UsuarioDAL.ChangePasswordAsync(usuario, oldPassword);
         }
-
-
 
 
     }

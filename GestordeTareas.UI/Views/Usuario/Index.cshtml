@@ -12,9 +12,13 @@
 <table class="table">
     <thead>
         <tr>
+<<<<<<< HEAD
             <th>
                 @Html.DisplayNameFor(model => model.Id)
             </th>
+=======
+
+>>>>>>> b534d9f8831c29814da1321ba4ea8e73f7a671f5
             <th>
                 @Html.DisplayNameFor(model => model.Nombre)
             </th>
@@ -22,9 +26,12 @@
                 @Html.DisplayNameFor(model => model.Apellido)
             </th>
             <th>
+<<<<<<< HEAD
                 @Html.DisplayNameFor(model => model.NombreUsuario)
             </th>
             <th>
+=======
+>>>>>>> b534d9f8831c29814da1321ba4ea8e73f7a671f5
                 @Html.DisplayNameFor(model => model.Pass)
             </th>
             <th>
@@ -34,11 +41,21 @@
                 @Html.DisplayNameFor(model => model.FechaNacimiento)
             </th>
             <th>
+<<<<<<< HEAD
+=======
+                @Html.DisplayNameFor(model => model.IdCargo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreUsuario)
+            </th>
+            <th>
+>>>>>>> b534d9f8831c29814da1321ba4ea8e73f7a671f5
                 @Html.DisplayNameFor(model => model.Status)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FechaRegistro)
             </th>
+<<<<<<< HEAD
             <th>
                 @Html.DisplayNameFor(model => model.IdCargo)
             </th>
@@ -48,10 +65,14 @@
             <th>
                 @Html.DisplayNameFor(model => model.ConfirmPassword_Aux)
             </th>
+=======
+
+>>>>>>> b534d9f8831c29814da1321ba4ea8e73f7a671f5
             <th></th>
         </tr>
     </thead>
     <tbody>
+<<<<<<< HEAD
 @foreach (var item in Model) {
         <tr>
             <td>
@@ -99,3 +120,44 @@
 }
     </tbody>
 </table>
+=======
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Apellido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pass)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefono)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaNacimiento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdCargo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreUsuario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaRegistro)
+                </td>
+                <td>
+                    @Html.ActionLink("Modificar", "Edit", new { id = item.Id }, new { @class = "btn btn-outline-info" })
+                    @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-outline-secondary" })
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-outline-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+>>>>>>> b534d9f8831c29814da1321ba4ea8e73f7a671f5
