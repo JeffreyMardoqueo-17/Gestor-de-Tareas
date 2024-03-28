@@ -34,5 +34,6 @@ namespace GestordeTareas.DAL
                                            TrustServerCertificate = true;");
         }
 
+
     }
 }
