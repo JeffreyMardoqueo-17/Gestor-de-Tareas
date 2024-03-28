@@ -2,6 +2,7 @@
 
 
 <form asp-action="Create" id="createForm" class="bg-white rounded px-8 pt-6 pb-8 mb-4 border border-purple-700">
+    @Html.AntiForgeryToken() <!-- Agregar el token anti-forgery aquí -->
     <div asp-validation-summary="ModelOnly" class="text-purple-700"></div>
     <div class="mb-4">
         <label asp-for="Nombre" class="block text-gray-700 text-sm font-bold mb-2">Nombre</label>
@@ -10,7 +11,7 @@
     </div>
 
     <div class="mb-4">
-        <label asp-for="Descripcion" class="block text-gray-700 text-sm font-bold mb-2">Descripcion</label>
+        <label asp-for="Descripcion" clas   s="block text-gray-700 text-sm font-bold mb-2">Descripcion</label>
         <input asp-for="Descripcion" class="border-b-2 border-purple-700 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-purple-500" placeholder="Descripcion de la Tarea" />
         <span asp-validation-for="Descripcion" class="text-purple-700 text-xs italic"></span>
     </div>

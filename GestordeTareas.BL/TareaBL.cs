@@ -12,23 +12,68 @@ namespace GestordeTareas.BL
     {
         public async Task<int> CreateAsync(Tarea tarea)
         {
-            return await TareaDAL.CreateAsync(tarea);
+            try
+            {
+                return await TareaDAL.CreateAsync(tarea);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al crear la tarea: {ex.Message}");
+                throw; // Lanzar la excepción para manejarla en el controlador
+            }
         }
+
         public async Task<int> UpdateAsync(Tarea tarea)
         {
-            return await TareaDAL.UpdateAsync(tarea);
+            try
+            {
+                return await TareaDAL.UpdateAsync(tarea);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al actualizar la tarea: {ex.Message}");
+                throw; // Lanzar la excepción para manejarla en el controlador
+            }
         }
+
         public async Task<int> DeleteAsync(Tarea tarea)
         {
-            return await TareaDAL.DeleteAsync(tarea);
+            try
+            {
+                return await TareaDAL.DeleteAsync(tarea);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al eliminar la tarea: {ex.Message}");
+                throw; // Lanzar la excepción para manejarla en el controlador
+            }
         }
+
         public async Task<Tarea> GetById(Tarea tarea)
         {
-            return await TareaDAL.GetByIdAsync(tarea);
+            try
+            {
+                return await TareaDAL.GetByIdAsync(tarea);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener la tarea por ID: {ex.Message}");
+                throw; // Lanzar la excepción para manejarla en el controlador
+            }
         }
+
         public async Task<List<Tarea>> GetAllAsync()
         {
-            return await TareaDAL.GetAllAsync();
+            try
+            {
+                return await TareaDAL.GetAllAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener todas las tareas: {ex.Message}");
+                throw; // Lanzar la excepción para manejarla en el controlador
+            }
         }
     }
+
 }
