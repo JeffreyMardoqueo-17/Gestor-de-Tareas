@@ -29,11 +29,15 @@ namespace GestordeTareas.UI.Controllers
         }
 
         // GET: TareaController
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int id)
         {
-            List<Tarea> Lista = await _tareaBL.GetAllAsync();
+            //List<Tarea> Lista = await _tareaBL.GetAllAsync();
 
-            return View(Lista);
+            //return View(Lista);
+
+            // Aquí cargas las tareas asociadas al proyecto con el ID proporcionado
+            var tareas = await TareaDAL.GetTareasByProyectoIdAsync(id);
+            return View(tareas);
         }
 
         // GET: TareaController/Details/5
@@ -42,25 +46,29 @@ namespace GestordeTareas.UI.Controllers
             var tarea = await _tareaBL.GetById(new Tarea { Id = id });
             return PartialView("Details", tarea);
         }
+        // Nuevo
         private async Task<int> GetProyectoIdAsync(Proyecto proyecto)
         {
-            var result = await ProyectoDAL.GetByIdAsync(proyecto);
+            var result = await _proyectoBL.GetById(proyecto);
             int proyectoId = Convert.ToInt32(result);
             return proyectoId;
         }
 
         // GET: TareaController/Create
-        public async Task<ActionResult> Create()
+        public async Task<ActionResult> Create(int idProyecto)
         {
             await LoadDropDownListsAsync(); //Se llama al método y se espera que cargue
-            return PartialView("Create");
+            var tarea = new Tarea { IdProyecto = idProyecto };
+            ViewBag.ProyectoId = tarea.IdProyecto;
+            return PartialView("Create", tarea);
         }
 
         // POST: CategoriaController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(Tarea tarea, Proyecto proyecto)
+        public async Task<ActionResult> Create(Tarea tarea, int idProyecto)
         {
+            Proyecto proyecto = new Proyecto();
          
             try
             {
@@ -68,10 +76,10 @@ namespace GestordeTareas.UI.Controllers
                 // no tenga que seleccionar al proyecto del que quiero crear la tarea si no que 
                 // ya tendria que traer el id del proyecto al que pertence dicha tarea
                 // Obtener el ID del proyecto del contexto de ruta
-                int proyectoId = Convert.ToInt32(RouteData.Values["id"]);
+               // int proyectoId = Convert.ToInt32(RouteData.Values["id"]);
 
                 // Asignar el ID del proyecto a la tarea
-                tarea.IdProyecto = proyectoId;
+                tarea.IdProyecto = idProyecto;
 
                 tarea.FechaCreacion = DateTime.Now;
                 int estadoPendienteId = await EstadoTareaDAL.GetEstadoPendienteIdAsync();
@@ -83,8 +91,14 @@ namespace GestordeTareas.UI.Controllers
             catch (Exception ex)
             {
                 ViewBag.Error = ex.Message;
-                ViewBag.ProyectoId = GetProyectoIdAsync(proyecto);
-                return PartialView("Create", tarea);
+
+                // Volver a cargar las listas desplegables u otros datos necesarios para la vista
+                await LoadDropDownListsAsync();
+
+              //  ViewBag.idProyecto = GetProyectoIdAsync(proyecto);
+                // Devolver la vista parcial "Create" con la tarea y el ID de proyecto
+                return PartialView("Create", new Tarea { IdProyecto = idProyecto });
+               // return PartialView("Create", tarea);
             }
         }
 
