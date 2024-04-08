@@ -1,10 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GestordeTaras.EN
 {
@@ -14,7 +12,7 @@ namespace GestordeTaras.EN
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Campo obligatorio")]
-        [Display(Name = "Fecha de finalizacion")]
+        [Display(Name = "Fecha de finalización")]
         public DateTime FechaFinalizacion { get; set; }
 
         [Required(ErrorMessage = "Campo obligatorio")]
@@ -26,6 +24,16 @@ namespace GestordeTaras.EN
         [Display(Name = "Elegir Tarea")]
         public int IdElegirTarea { get; set; }
 
-        
+        [ForeignKey("ImagenPrueba")]
+        [Display(Name = "Imagen de prueba")]
+        public int? ImagenPruebaId { get; set; } // Propiedad para la clave externa de ImagenPrueba
+
+        public List<ImagenesPrueba> ImagenesPruebaLista { get; set; } = new List<ImagenesPrueba>(); // Propiedad de navegación a ImagenesPrueba
+
+        public int Top_Aux { get; set; } // propiedad auxiliar
+        public string UrlImagen { get; set; } // Propiedad para la URL de la imagen
+
+        [NotMapped] // Indica que esta propiedad no se mapea a la base de datos
+        public List<IFormFile> ImageFiles { get; set; } // Propiedad para almacenar los archivos subidos
     }
 }

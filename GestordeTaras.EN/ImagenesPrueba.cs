@@ -28,6 +28,8 @@ namespace GestordeTaras.EN
         [NotMapped]
         public int Top_Aux { get; set; } // propiedad auxiliar
         public TareaFinalizada TareaFinalizada { get; set; } = new TareaFinalizada(); // propiedad de navegación
+        public List<ImagenesPrueba> ImagenesPruebas { get; set; }
+
 
     }
 }

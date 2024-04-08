@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\GestordeTaras.EN\GestordeTaras.EN.csproj" />
     <ProjectReference Include="..\GestordeTareas.DAL\GestordeTareas.DAL.csproj" />
   </ItemGroup>

@@ -125,5 +125,18 @@ namespace GestordeTareas.DAL
             }
             return imagen;
         }
+
+        public static async Task<List<ImagenesPrueba>> GetAllWithRelatedTasksAsync()
+        {
+            using (var context = new ContextoBD()) // 
+            {
+                var imagenesPrueba = await context.ImagenesPrueba
+                    .Include(ip => ip.TareaFinalizada) // Incluye las tareas finalizadas asociadas
+                    .ToListAsync();
+
+                return imagenesPrueba;
+            }
+        }
+
     }
 }

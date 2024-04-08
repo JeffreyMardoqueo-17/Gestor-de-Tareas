@@ -47,5 +47,11 @@ namespace GestordeTareas.BL
         {
             return await ImagenesPruebaDAL.SearchIncludeAdAsync(imagenesPrueba);
         }
+
+        public async Task<List<ImagenesPrueba>> GetAllWithRelatedTasksAsync()
+        {
+            return await ImagenesPruebaDAL.GetAllWithRelatedTasksAsync();
+        }
+
     }
 }

@@ -77,5 +77,17 @@ namespace GestordeTareas.DAL
             }
             return tareasFinalizadas;
         }
+        public static async Task<List<TareaFinalizada>> GetAllWithImageAsync()
+        {
+            using (var context = new ContextoBD()) 
+            {
+                var tareasFinalizadas = await context.TareaFinalizada
+                    .Include(t => t.ImagenesPruebaLista) // Incluye la imagen asociada
+                    .ToListAsync();
+
+                return tareasFinalizadas;
+            }
+        }
+
     }
 }
