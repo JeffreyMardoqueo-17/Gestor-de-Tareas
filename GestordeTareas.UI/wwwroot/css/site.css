@@ -162,6 +162,9 @@ body.light {
     left: 100%;
   }
 }
+.dark .infor{
+  color: #e5e5e5;
+}
 /* MODO DARK DE LAS TABLAS
 /* Table Styles */
 table {
@@ -257,3 +260,22 @@ table td {
 }
 /* header de las tablas estaticas */
  /* CSS para fijar los encabezados de la tabla */
+/* MENU */
+.dark .menu{
+  background-color: #0D0C13;
+  color: #ffff;
+}
+.dark .menu a{
+  color: #c6d5f2;
+}
+.dark .menu a:hover{
+  background-color: #191724;
+  color:#A489F5;
+}
+
+.dark-menu {
+    background-color: #0D0C13;
+}
+.dark .inicio{
+  color: #0D0C13;
+}
